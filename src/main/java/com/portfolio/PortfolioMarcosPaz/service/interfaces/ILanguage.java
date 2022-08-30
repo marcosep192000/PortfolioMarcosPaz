@@ -10,4 +10,5 @@ public interface ILanguage {
     LanguageResponse save(LanguageRequest request);
     LanguageResponse update(LanguageRequest request);
     List<Language> allLanguages();
+    void deletLanguage(Long id);
 }

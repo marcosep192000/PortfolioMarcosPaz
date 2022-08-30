@@ -35,9 +35,14 @@ public class LanguageImpl implements ILanguage {
 
     @Override
     public List<Language> allLanguages() {
-
         List<Language> List= repository.findAll();
        return List;
+    }
+
+    @Override
+    public void deletLanguage(Long id) {
+          repository.deleteById(id);
+
     }
 
 
