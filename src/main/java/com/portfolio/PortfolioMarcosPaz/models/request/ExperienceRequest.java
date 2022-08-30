@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 
 public class ExperienceRequest implements Serializable {
+    private Long id;
     @NotBlank(message = "Name is empty.")
     private  String Name;
     private  String logo;
