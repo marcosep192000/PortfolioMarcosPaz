@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IExperience {
     ExperienceResponse saveExperience(ExperienceRequest request);
-    ExperienceResponse updateExperience(ExperienceRequest request);
+    ExperienceResponse updateExperience(Long id , ExperienceRequest request);
     List<Language> allExperiences();
     void deletExperience(Long id);
 }

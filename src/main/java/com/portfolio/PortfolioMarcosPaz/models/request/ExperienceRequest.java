@@ -5,7 +5,6 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
-
 public class ExperienceRequest implements Serializable {
     private Long id;
     @NotBlank(message = "Name is empty.")
@@ -18,14 +17,25 @@ public class ExperienceRequest implements Serializable {
     @NotBlank(message = "Description  is empty.")
     private  String description;
 
-    public ExperienceRequest(String name, String logo, String startDate, String finallyDate, String description) {
+
+    public ExperienceRequest(Long id, String name, String logo, String startDate, String finallyDate, String description) {
+        this.id = id;
         Name = name;
         this.logo = logo;
         this.startDate = startDate;
         this.finallyDate = finallyDate;
         this.description = description;
     }
+
     public ExperienceRequest() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

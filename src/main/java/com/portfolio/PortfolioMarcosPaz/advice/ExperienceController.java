@@ -10,24 +10,32 @@ import org.springframework.boot.autoconfigure.session.RedisSessionProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-
 @Controller
-@RequestMapping("/Experience")
+@RequestMapping("/experience")
 public class ExperienceController {
-
     @Autowired
     ExperienceIpl experienceService;
-
     @PostMapping("/create")
     public ResponseEntity<ExperienceResponse> create(@Valid @RequestBody ExperienceRequest request){
          experienceService.saveExperience(request);
         return new ResponseEntity(new Message("Experience created!"), HttpStatus.ACCEPTED);
     }
-
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ExperienceResponse> update( @PathVariable Long id, @RequestBody  ExperienceRequest request) {
+        experienceService.updateExperience(id,request);
+        return new ResponseEntity(new Message("Experience update!"), HttpStatus.ACCEPTED);
+    }
+    @PostMapping("/delet")
+    public ResponseEntity<ExperienceResponse> delete (@Valid @RequestBody Long id) {
+        experienceService.deletExperience(id);
+        return new ResponseEntity(new Message("Experience created!"), HttpStatus.ACCEPTED);
+    }
+    @PostMapping("/all")
+    public ResponseEntity<ExperienceResponse> all() {
+        experienceService.allExperiences();
+        return new ResponseEntity(new Message("Experience created!"), HttpStatus.ACCEPTED);
+    }
 }

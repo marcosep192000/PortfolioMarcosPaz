@@ -18,24 +18,24 @@ public class ExperienceMapper {
             return response;
     }
     public Experience dtoToExperiencia(ExperienceRequest experience) {
-            Experience experience1 = new Experience();
-            experience1.setId(experience.getId());
-            experience1.setName(experience.getName());
-            experience1.setLogo(experience.getLogo());
-            experience1.setStartDate(experience.getStartDate());
-            experience1.setFinallyDate(experience.getFinallyDate());
-            experience1.setDescription(experience.getDescription());
-            return experience1;
-        }
-        void updateExperience(Experience experience, ExperienceRequest experienceRequest){
-            experience.setName(experience.getName());
-            experience.setLogo(experience.getLogo());
-            experience.setStartDate(experience.getStartDate());
-            experience.setFinallyDate(experience.getFinallyDate());
-            experience.setDescription(experience.getDescription());
+        Experience experience1 = new Experience();
+        experience1.setId(experience.getId());
+        experience1.setName(experience.getName());
+        experience1.setLogo(experience.getLogo());
+        experience1.setStartDate(experience.getStartDate());
+        experience1.setFinallyDate(experience.getFinallyDate());
+        experience1.setDescription(experience.getDescription());
+        return experience1;
+    }
+            public Experience updateExperience(Experience experience, ExperienceRequest experienceRequest){
+            experience.setName(experienceRequest.getName());
+            experience.setLogo(experienceRequest.getLogo());
+            experience.setStartDate(experienceRequest.getStartDate());
+            experience.setFinallyDate(experienceRequest.getFinallyDate());
+            experience.setDescription(experienceRequest.getDescription());
+                return experience;
             }
         void UpdateSoftDelete(Experience experience,ExperienceRequest experienceRequest) {
-
 
         }
     }

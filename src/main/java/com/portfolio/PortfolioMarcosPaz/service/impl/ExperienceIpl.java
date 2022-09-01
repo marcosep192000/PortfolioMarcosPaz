@@ -8,9 +8,12 @@ import com.portfolio.PortfolioMarcosPaz.models.response.ExperienceResponse;
 import com.portfolio.PortfolioMarcosPaz.repository.ExperienceRepository;
 import com.portfolio.PortfolioMarcosPaz.service.interfaces.IExperience;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
+@Service
 public class ExperienceIpl implements IExperience {
 @Autowired
     ExperienceMapper mapper;
@@ -24,8 +27,11 @@ ExperienceRepository experienceService;
     }
 
     @Override
-    public ExperienceResponse updateExperience(ExperienceRequest request) {
-        return null;
+    public ExperienceResponse updateExperience(Long id , ExperienceRequest request) {
+        Optional<Experience> experience = experienceService.findById(id);
+       Experience experience1 =  mapper.updateExperience(experience.get(),request);
+        experienceService.save(experience1);
+        return mapper.experienceToDto(experience1);
     }
 
     @Override
