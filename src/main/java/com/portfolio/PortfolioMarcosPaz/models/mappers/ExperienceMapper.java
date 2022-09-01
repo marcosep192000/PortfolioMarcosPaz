@@ -3,13 +3,12 @@ package com.portfolio.PortfolioMarcosPaz.models.mappers;
 import com.portfolio.PortfolioMarcosPaz.models.entity.Experience;
 import com.portfolio.PortfolioMarcosPaz.models.request.ExperienceRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.ExperienceResponse;
-import org.aspectj.weaver.NewConstructorTypeMunger;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ExperienceMapper {
 
-    public ExperienceResponse experienceToDto(ExperienceRequest experience){
+    public ExperienceResponse experienceToDto(Experience experience){
             ExperienceResponse response = new ExperienceResponse();
             response.setName(experience.getName());
             response.setLogo(experience.getLogo());
@@ -18,7 +17,7 @@ public class ExperienceMapper {
             response.setDescription(experience.getDescription());
             return response;
     }
-    public Experience dtoToExperiencia(Experience experience) {
+    public Experience dtoToExperiencia(ExperienceRequest experience) {
             Experience experience1 = new Experience();
             experience1.setId(experience.getId());
             experience1.setName(experience.getName());
