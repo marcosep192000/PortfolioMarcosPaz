@@ -12,20 +12,20 @@ public class ExperienceResponse implements Serializable {
     private  String startDate;
     private  String finallyDate;
     private  String description;
+    private Boolean state ;
 
 
     public ExperienceResponse() {
     }
 
-    public ExperienceResponse(Long id, String name, String logo,
-                              String startDate, String finallyDate,
-                              String description) {
+    public ExperienceResponse(Long id, String name, String logo, String startDate, String finallyDate, String description, Boolean state) {
         this.id = id;
         Name = name;
         this.logo = logo;
         this.startDate = startDate;
         this.finallyDate = finallyDate;
         this.description = description;
+        this.state = state;
     }
 
     public Long getId() {
@@ -74,5 +74,13 @@ public class ExperienceResponse implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean getState() {
+        return state;
+    }
+
+    public void setState(Boolean state) {
+        this.state = state;
     }
 }

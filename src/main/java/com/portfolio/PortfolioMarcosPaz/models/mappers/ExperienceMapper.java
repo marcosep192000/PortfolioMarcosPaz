@@ -5,8 +5,12 @@ import com.portfolio.PortfolioMarcosPaz.models.request.ExperienceRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.ExperienceResponse;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class ExperienceMapper {
+
+
 
     public ExperienceResponse experienceToDto(Experience experience){
             ExperienceResponse response = new ExperienceResponse();
@@ -35,8 +39,10 @@ public class ExperienceMapper {
             experience.setDescription(experienceRequest.getDescription());
                 return experience;
             }
-        void UpdateSoftDelete(Experience experience,ExperienceRequest experienceRequest) {
-
+        public Experience UpdateSoftDelete(Experience experience,boolean state )
+        {
+             experience.setState(state);
+             return  experience;
         }
     }
 

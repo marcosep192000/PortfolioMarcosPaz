@@ -1,15 +1,16 @@
 package com.portfolio.PortfolioMarcosPaz.service.impl;
 
 import com.portfolio.PortfolioMarcosPaz.models.entity.Experience;
-import com.portfolio.PortfolioMarcosPaz.models.entity.Language;
 import com.portfolio.PortfolioMarcosPaz.models.mappers.ExperienceMapper;
 import com.portfolio.PortfolioMarcosPaz.models.request.ExperienceRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.ExperienceResponse;
 import com.portfolio.PortfolioMarcosPaz.repository.ExperienceRepository;
 import com.portfolio.PortfolioMarcosPaz.service.interfaces.IExperience;
+import com.portfolio.PortfolioMarcosPaz.util.exeptions.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,14 +34,19 @@ ExperienceRepository experienceService;
         experienceService.save(experience1);
         return mapper.experienceToDto(experience1);
     }
-
     @Override
-    public List<Language> allExperiences() {
-        return null;
+    public List<Experience> allExperiences() {
+        experienceService.findAll();
+        List<Experience> newList = new ArrayList(experienceService.findAll());
+        return  newList;
     }
-
     @Override
     public void deletExperience(Long id) {
-
+        Optional<Experience> experience = experienceService.findById(id);
+        Experience experience1;
+        if (experience.get().getState(true)) {
+            experience1 = mapper.UpdateSoftDelete(experience.get(),  false);}
+        else  {experience1 = mapper.UpdateSoftDelete(experience.get(), true);}
+        experienceService.save(experience1);
     }
 }

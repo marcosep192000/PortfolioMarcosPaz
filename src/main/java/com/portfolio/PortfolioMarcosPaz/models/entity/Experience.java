@@ -1,7 +1,5 @@
 package com.portfolio.PortfolioMarcosPaz.models.entity;
 
-import lombok.*;
-
 import javax.persistence.*;
 
 @Entity
@@ -18,17 +16,20 @@ public class Experience {
     private String startDate;
     private String finallyDate;
     private String description;
+    private Boolean state = true ;
 
-    public Experience(Long id, String name, String logo, String startDate, String finallyDate, String description) {
+    public Experience() {
+    }
+
+    public Experience(Long id, String name, String logo, String startDate, String finallyDate, String description, Boolean state) {
         this.id = id;
         Name = name;
         this.logo = logo;
         this.startDate = startDate;
         this.finallyDate = finallyDate;
         this.description = description;
-    }
+        this.state = state;
 
-    public Experience() {
     }
 
     public Long getId() {
@@ -79,15 +80,11 @@ public class Experience {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "Experience{" +
-                "id=" + id +
-                ", Name='" + Name + '\'' +
-                ", logo='" + logo + '\'' +
-                ", startDate='" + startDate + '\'' +
-                ", finallyDate='" + finallyDate + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+    public Boolean getState(boolean state) {
+        return this.state;
+    }
+
+    public void setState(Boolean state) {
+        this.state = state;
     }
 }

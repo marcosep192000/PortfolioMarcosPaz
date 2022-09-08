@@ -16,18 +16,19 @@ public class ExperienceRequest implements Serializable {
     private  String finallyDate;
     @NotBlank(message = "Description  is empty.")
     private  String description;
+    private Boolean state ;
 
+    public ExperienceRequest() {
+    }
 
-    public ExperienceRequest(Long id, String name, String logo, String startDate, String finallyDate, String description) {
+    public ExperienceRequest(Long id, String name, String logo, String startDate, String finallyDate, String description, Boolean state) {
         this.id = id;
         Name = name;
         this.logo = logo;
         this.startDate = startDate;
         this.finallyDate = finallyDate;
         this.description = description;
-    }
-
-    public ExperienceRequest() {
+        this.state = state;
     }
 
     public Long getId() {
@@ -76,5 +77,13 @@ public class ExperienceRequest implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean getState() {
+        return state;
+    }
+
+    public void setState(Boolean state) {
+        this.state = state;
     }
 }

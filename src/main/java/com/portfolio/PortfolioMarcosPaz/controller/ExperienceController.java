@@ -1,5 +1,6 @@
-package com.portfolio.PortfolioMarcosPaz.advice;
+package com.portfolio.PortfolioMarcosPaz.controller;
 
+import com.portfolio.PortfolioMarcosPaz.models.entity.Experience;
 import com.portfolio.PortfolioMarcosPaz.models.request.ExperienceRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.ExperienceResponse;
 import com.portfolio.PortfolioMarcosPaz.service.impl.ExperienceIpl;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+
 @Controller
 @RequestMapping("/experience")
 public class ExperienceController {
@@ -28,14 +31,16 @@ public class ExperienceController {
         experienceService.updateExperience(id,request);
         return new ResponseEntity(new Message("Experience update!"), HttpStatus.ACCEPTED);
     }
-    @PostMapping("/delet")
-    public ResponseEntity<ExperienceResponse> delete (@Valid @RequestBody Long id) {
-        experienceService.deletExperience(id);
-        return new ResponseEntity(new Message("Experience created!"), HttpStatus.ACCEPTED);
+    @PutMapping("/delete/{id}")
+    public ResponseEntity<ExperienceResponse> delete (@PathVariable Long id) {
+         experienceService.deletExperience(id);
+        return new ResponseEntity(new Message("Experience Deleted !"), HttpStatus.ACCEPTED);
     }
-    @PostMapping("/all")
+    @GetMapping("/all")
     public ResponseEntity<ExperienceResponse> all() {
-        experienceService.allExperiences();
-        return new ResponseEntity(new Message("Experience created!"), HttpStatus.ACCEPTED);
+        List<Experience> list =  experienceService.allExperiences();
+        return new ResponseEntity(list, HttpStatus.ACCEPTED);
     }
+
 }
+
