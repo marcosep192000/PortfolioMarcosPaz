@@ -15,14 +15,14 @@ public class Project {
     private String description;
     private String linkRepo;
     private String image ;
-    private String state;
+    private Boolean state= true;
 
     public static final String COLUMN_ID_NAME = "id";
 
     public Project() {
     }
 
-    public Project(Long id, String title, String subTitle, String description, String linkRepo, String image, String state) {
+    public Project(Long id, String title, String subTitle, String description, String linkRepo, String image, Boolean state) {
         this.id = id;
         this.title = title;
         this.subTitle = subTitle;
@@ -30,6 +30,14 @@ public class Project {
         this.linkRepo = linkRepo;
         this.image = image;
         this.state = state;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -72,19 +80,11 @@ public class Project {
         this.image = image;
     }
 
-    public String getState() {
+    public Boolean getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(Boolean state) {
         this.state = state;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

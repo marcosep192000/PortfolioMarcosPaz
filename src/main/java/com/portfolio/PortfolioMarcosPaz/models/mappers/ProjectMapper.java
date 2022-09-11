@@ -14,7 +14,7 @@ public class ProjectMapper {
         project.setTitle(request.getTitle());
         project.setSubTitle(request.getSubTitle());
         project.setImage(request.getImage());
-        project.setState(request.getState());
+
         project.setLinkRepo(request.getLinkRepo());
         return project;
     }
@@ -25,7 +25,7 @@ public class ProjectMapper {
         response.setTitle(project.getTitle());
         response.setSubTitle(project.getSubTitle());
         response.setImage(project.getImage());
-        response.setState(project.getState());
+
         response.setLinkRepo(project.getLinkRepo());
         return response;
     }
@@ -35,7 +35,7 @@ public class ProjectMapper {
         project.setTitle(request.getTitle());
         project.setSubTitle(request.getSubTitle());
         project.setImage(request.getImage());
-        project.setState(request.getState());
+
         project.setLinkRepo(request.getLinkRepo());
     }
 }
