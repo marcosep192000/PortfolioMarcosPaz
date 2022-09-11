@@ -24,7 +24,7 @@ public class LanguageController {
     public ResponseEntity<LanguageResponse>save( @Valid  @RequestBody LanguageRequest request) {
     return new ResponseEntity(languageService.save(request),HttpStatus.CREATED) ;
 }
-    @PutMapping("/update-language")
+@PutMapping("/update-language")
     public ResponseEntity<LanguageResponse> update(@Valid @RequestBody LanguageRequest request) {
     LanguageResponse l= languageService.update(request);
     return new ResponseEntity("Language update",HttpStatus.ACCEPTED);
