@@ -5,6 +5,9 @@ import com.portfolio.PortfolioMarcosPaz.models.request.ProjectRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.ProjectResponse;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class ProjectMapper {
 
@@ -14,28 +17,30 @@ public class ProjectMapper {
         project.setTitle(request.getTitle());
         project.setSubTitle(request.getSubTitle());
         project.setImage(request.getImage());
-
         project.setLinkRepo(request.getLinkRepo());
         return project;
     }
-
     public ProjectResponse entityToDto(Project project) {
         ProjectResponse response = new ProjectResponse();
         response.setDescription(project.getDescription());
         response.setTitle(project.getTitle());
         response.setSubTitle(project.getSubTitle());
         response.setImage(project.getImage());
-
         response.setLinkRepo(project.getLinkRepo());
         return response;
     }
-    public void updateEntity(Project project, ProjectRequest request )
-    {
+    public void updateEntity(Project project, ProjectRequest request ) {
         project.setDescription(request.getDescription());
         project.setTitle(request.getTitle());
         project.setSubTitle(request.getSubTitle());
         project.setImage(request.getImage());
-
         project.setLinkRepo(request.getLinkRepo());
+    }
+    public List<ProjectResponse> allProjects(List<Project> projectList){
+        List<ProjectResponse> responseList = new ArrayList<>();
+        projectList.forEach(project -> {
+            responseList.add(entityToDto(project))
+            ;});
+        return  responseList;
     }
 }
