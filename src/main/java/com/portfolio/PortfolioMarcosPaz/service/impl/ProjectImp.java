@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProjectImp implements IProject {
@@ -37,8 +38,12 @@ public class ProjectImp implements IProject {
         return null;
     }
     @Override
-    public ExperienceResponse updateProject(Long id, ExperienceRequest request) {
-        return null;
+    public ProjectResponse updateProject(Long id, ProjectRequest request) {
+        Optional<Project> project = projectRepository.findById(id);
+
+        Project projectNew =  mapper.updateEntity(project.get(),request);
+        projectRepository.save(projectNew);
+        return mapper.entityToDto(projectNew);
     }
     @Override
     public void deletProject(Long id) {

@@ -1,5 +1,7 @@
 package com.portfolio.PortfolioMarcosPaz.util.exeptions;
 
+import org.springframework.http.HttpStatus;
+
 public class Message {
     String message;
 
@@ -8,6 +10,9 @@ public class Message {
     }
 
     public Message() {
+    }
+
+    public Message(String s, HttpStatus accepted) {
     }
 
     public String getMessage() {

@@ -13,7 +13,7 @@ public interface IProject {
      ProjectResponse save(ProjectRequest request);
      List<ProjectResponse> allProjects();
      ProjectResponse deleteProject(Long id);
-     ExperienceResponse updateProject(Long id , ExperienceRequest request);
+     ProjectResponse updateProject(Long id ,ProjectRequest request);
      void deletProject(Long id);
 
 }

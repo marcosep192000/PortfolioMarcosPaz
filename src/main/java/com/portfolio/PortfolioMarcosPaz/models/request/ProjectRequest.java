@@ -45,6 +45,34 @@ public class ProjectRequest implements Serializable {
         return state;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setLinkRepo(String linkRepo) {
+        this.linkRepo = linkRepo;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
     public ProjectRequest(Long id, String title, String subTitle, String description, String linkRepo, String image, String state) {
         this.id = id;
         this.title = title;

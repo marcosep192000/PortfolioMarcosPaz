@@ -31,5 +31,11 @@ public class ProjectController {
     public ResponseEntity<List<ProjectResponse>>allProjets(){
         return new ResponseEntity(projectService.allProjects(),HttpStatus.ACCEPTED);
     }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ProjectRequest> updateProject ( @Valid @PathVariable Long id, @RequestBody  ProjectRequest request){
+
+        projectService.updateProject(id,request);
+        return new ResponseEntity(new Message("update! "),HttpStatus.ACCEPTED);
+    }
 
 }
