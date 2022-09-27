@@ -1,20 +1,12 @@
-package com.portfolio.PortfolioMarcosPaz.models.entity;
+package com.portfolio.PortfolioMarcosPaz.models.request;
 
-import lombok.*;
+import lombok.Data;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-
-@Entity
-@Table(name = Education.TABLE_NAME)
-public class Education {
-    public static final String TABLE_NAME = "education";
-    public static final String COLUMN_ID_NAME = "id";
+import java.io.Serializable;
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_ID_NAME, nullable = false)
+public class EducationRequest implements Serializable {
     private Long id;
     @NotBlank(message = "Title not Empty")
     private String titleExperience;
@@ -24,23 +16,11 @@ public class Education {
     private String dateStart;
     @NotBlank(message = "Not Empty")
     private String dateEnd;
-    private String ubicacion ;
+    private String ubicacion;
     private String sector;
-    private boolean state;
 
 
-    public Education() {
-    }
-
-    public Education(Long id, String titleExperience, String nameBussines, String dateStart, String dateEnd, String ubicacion, String sector, boolean state) {
-        this.id = id;
-        this.titleExperience = titleExperience;
-        this.nameBussines = nameBussines;
-        this.dateStart = dateStart;
-        this.dateEnd = dateEnd;
-        this.ubicacion = ubicacion;
-        this.sector = sector;
-        this.state = state;
+    public EducationRequest() {
     }
 
     public Long getId() {
@@ -99,11 +79,17 @@ public class Education {
         this.sector = sector;
     }
 
-    public boolean isState() {
-        return state;
-    }
+    public EducationRequest(Long id, String titleExperience, String nameBussines, String dateStart, String dateEnd, String ubicacion, String sector) {
+        this.id = id;
+        this.titleExperience = titleExperience;
+        this.nameBussines = nameBussines;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.ubicacion = ubicacion;
+        this.sector = sector;
 
-    public void setState(boolean state) {
-        this.state = state;
+
+
+
     }
 }
