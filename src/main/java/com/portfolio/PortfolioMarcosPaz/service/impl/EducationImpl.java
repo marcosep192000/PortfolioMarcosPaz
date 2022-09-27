@@ -1,6 +1,9 @@
 package com.portfolio.PortfolioMarcosPaz.service.impl;
 
-public class EducationImpl {
+import com.portfolio.PortfolioMarcosPaz.service.interfaces.IEducation;
+import org.springframework.stereotype.Service;
 
+@Service
+public class EducationImpl implements IEducation {
 
 }

@@ -1,4 +1,5 @@
 package com.portfolio.PortfolioMarcosPaz.service.interfaces;
 
-public interface EducationRepositoriy {
+public interface IEducation {
+
 }

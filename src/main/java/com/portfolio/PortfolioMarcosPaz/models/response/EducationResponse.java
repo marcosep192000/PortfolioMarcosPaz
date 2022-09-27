@@ -1,12 +1,10 @@
 package com.portfolio.PortfolioMarcosPaz.models.response;
 
-import lombok.Data;
-
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 
-public class EducationDto implements Serializable {
+public class EducationResponse implements Serializable {
     private  Long id;
     @NotBlank(message = "Title not Empty")
     private  String titleExperience;
@@ -20,10 +18,10 @@ public class EducationDto implements Serializable {
     private  String sector;
     private  boolean state;
 
-    public EducationDto() {
+    public EducationResponse() {
     }
 
-    public EducationDto(Long id, String titleExperience, String nameBussines, String dateStart, String dateEnd, String ubicacion, String sector, boolean state) {
+    public EducationResponse(Long id, String titleExperience, String nameBussines, String dateStart, String dateEnd, String ubicacion, String sector, boolean state) {
         this.id = id;
         this.titleExperience = titleExperience;
         this.nameBussines = nameBussines;
@@ -33,11 +31,9 @@ public class EducationDto implements Serializable {
         this.sector = sector;
         this.state = state;
     }
-
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
