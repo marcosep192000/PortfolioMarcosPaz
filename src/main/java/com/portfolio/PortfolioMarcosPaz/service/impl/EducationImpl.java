@@ -9,6 +9,8 @@ import com.portfolio.PortfolioMarcosPaz.service.interfaces.IEducation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EducationImpl implements IEducation {
 
@@ -34,7 +36,7 @@ public class EducationImpl implements IEducation {
     }
 
     @Override
-    public void allExperience() {
-
+    public List<Education> allEducation() {
+        return educationRepository.findAll();
     }
 }
