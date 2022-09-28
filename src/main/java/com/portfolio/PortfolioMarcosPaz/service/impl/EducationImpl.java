@@ -26,8 +26,11 @@ public class EducationImpl implements IEducation {
     }
 
     @Override
-    public EducationResponse uptdateEducation(Long id) {
-        return null;
+    public EducationResponse uptdateEducation(Long id,EducationRequest request) {
+        Education education = educationRepository.findById(id).orElseThrow();
+        Education upadateEducation = mapper.update(request,education);
+        educationRepository.save(upadateEducation);
+        return mapper.entityToDto(upadateEducation);
     }
 
     @Override

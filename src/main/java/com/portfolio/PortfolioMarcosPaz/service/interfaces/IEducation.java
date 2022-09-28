@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IEducation {
  EducationResponse  createEducation(EducationRequest request );
- EducationResponse uptdateEducation(Long id);
+ EducationResponse uptdateEducation(Long id,EducationRequest request);
  EducationResponse deleteEducation(Long id);
 List<Education> allEducation();
 

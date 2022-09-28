@@ -30,5 +30,12 @@ public class EducationMapper {
         response.setUbicacion(education.getUbicacion());
         return  response ;
     }
-
+    public Education update(EducationRequest request , Education education){
+        education.setTitleExperience(request.getTitleExperience());
+        education.setNameBussines(request.getNameBussines());
+        education.setDateEnd(request.getDateEnd());
+        education.setDateStart(request.getDateStart());
+        education.setUbicacion(request.getUbicacion());
+        return education;
+    }
 }

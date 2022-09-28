@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -24,7 +21,6 @@ public class EducationController {
     @Autowired
     EducationImpl education;
 
-
     @PostMapping("/create")
     public ResponseEntity<EducationResponse> create( @Valid @RequestBody EducationRequest request){
         education.createEducation(request);
@@ -35,5 +31,12 @@ public class EducationController {
         List<Education> educations = education.allEducation();
      return new ResponseEntity (educations,HttpStatus.ACCEPTED);
     }
+    @PutMapping("/update/{id}")
+    public ResponseEntity update(@Valid @PathVariable Long id,@RequestBody EducationRequest request)
+    {
+        education.uptdateEducation(id,request);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
 
 }
+
