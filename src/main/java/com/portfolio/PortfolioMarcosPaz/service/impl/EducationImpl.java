@@ -6,10 +6,12 @@ import com.portfolio.PortfolioMarcosPaz.models.request.EducationRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.EducationResponse;
 import com.portfolio.PortfolioMarcosPaz.repository.EducationRepository;
 import com.portfolio.PortfolioMarcosPaz.service.interfaces.IEducation;
+import com.portfolio.PortfolioMarcosPaz.util.exeptions.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EducationImpl implements IEducation {
@@ -34,10 +36,14 @@ public class EducationImpl implements IEducation {
     }
 
     @Override
-    public EducationResponse deleteEducation(Long id) {
-        return null;
+    public Message deleteEducation(Long id) {
+     Optional<Education> education =  educationRepository.findById(id);
+     if(education.isPresent()) {
+         educationRepository.deleteById(education.get().getId());
+         return new Message("deleted");
+     }
+       return  new Message("not exist");
     }
-
     @Override
     public List<Education> allEducation() {
         return educationRepository.findAll();

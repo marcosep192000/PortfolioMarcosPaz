@@ -35,7 +35,12 @@ public class EducationController {
     public ResponseEntity update(@Valid @PathVariable Long id,@RequestBody EducationRequest request)
     {
         education.uptdateEducation(id,request);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(new Message("Update"),HttpStatus.ACCEPTED);
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+          Message e =  education.deleteEducation(id);
+        return new ResponseEntity(e ,HttpStatus.ACCEPTED);
     }
 
 }
