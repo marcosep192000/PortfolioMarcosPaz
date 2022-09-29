@@ -1,4 +1,4 @@
-package com.portfolio.PortfolioMarcosPaz.models.request;
+package com.portfolio.PortfolioMarcosPaz.models.response;
 
 import lombok.Data;
 
@@ -6,19 +6,19 @@ import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 
-public class SkillDto implements Serializable {
+public class SkillResponse implements Serializable {
     private  Long id;
     @NotBlank(message = "Name not blanck")
-    private String nameSkill;
+    private  String nameSkill;
     @NotBlank(message = "Name not blanck")
     private  int pointSkill;
     @NotBlank(message = "Name not blanck")
     private  String imageSkillStack;
 
-    public SkillDto() {
+    public SkillResponse() {
     }
 
-    public SkillDto(Long id, String nameSkill, int pointSkill, String imageSkillStack) {
+    public SkillResponse(Long id, String nameSkill, int pointSkill, String imageSkillStack) {
         this.id = id;
         this.nameSkill = nameSkill;
         this.pointSkill = pointSkill;
