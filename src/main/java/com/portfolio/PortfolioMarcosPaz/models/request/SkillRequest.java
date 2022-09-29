@@ -1,7 +1,5 @@
 package com.portfolio.PortfolioMarcosPaz.models.request;
 
-import lombok.Data;
-
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
@@ -37,7 +35,7 @@ public class SkillRequest implements Serializable {
         return nameSkill;
     }
 
-    public void setNameSkill(String nameSkill) {
+    public void setNameSkill() {
         this.nameSkill = nameSkill;
     }
 
