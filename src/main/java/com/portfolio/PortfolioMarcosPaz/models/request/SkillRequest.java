@@ -1,6 +1,6 @@
 package com.portfolio.PortfolioMarcosPaz.models.request;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 
 
@@ -8,7 +8,8 @@ public class SkillRequest implements Serializable {
     private  Long id;
     @NotBlank(message = "Name not blanck")
     private String nameSkill;
-    @NotBlank(message = "Name not blanck")
+    @Min(value = 1, message = "min 1 ")
+    @Max(value = 100, message = "max 100")
     private int pointSkill;
     @NotBlank(message = "Name not blanck")
     private String imageSkillStack;
