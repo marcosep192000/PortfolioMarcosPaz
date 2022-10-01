@@ -13,5 +13,5 @@ public interface ISkill  {
     SkillResponse update(Long id ,SkillRequest request);
 
      List<Skill> all();
-    Skill delete(Long id);
+    ResponseEntity<?> delete(Long id);
 }

@@ -36,10 +36,10 @@ public class SkillController {
     public SkillResponse update(@Valid @PathVariable Long id ,  @RequestBody SkillRequest request) {
             return null ;
     }
-
     @DeleteMapping("/delete/{id}")
-    public SkillResponse delete(@PathVariable Long id) {
-        return null ;
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+            ResponseEntity entity=   skillService.delete(id);
+        return new ResponseEntity<>(entity.getBody(),entity.getStatusCode());
     }
 
 
