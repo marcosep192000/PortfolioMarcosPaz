@@ -1,5 +1,6 @@
 package com.portfolio.PortfolioMarcosPaz.controller;
 
+import com.portfolio.PortfolioMarcosPaz.models.entity.Skill;
 import com.portfolio.PortfolioMarcosPaz.models.request.SkillRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.SkillResponse;
 import com.portfolio.PortfolioMarcosPaz.service.impl.SkillImpl;
@@ -27,9 +28,10 @@ public class SkillController {
     return new ResponseEntity(E.getBody(),E.getStatusCode()) ;
     }
     @GetMapping("/all")
-    public EntityResponse<List<SkillResponse>>all(){
-        return null;
+    public ResponseEntity<List<SkillResponse>> all() {
+        return new ResponseEntity(skillService.all(), HttpStatus.ACCEPTED);
     }
+
     @PutMapping("/update/{id}")
     public SkillResponse update(@Valid @PathVariable Long id ,  @RequestBody SkillRequest request) {
             return null ;

@@ -5,6 +5,7 @@ import com.portfolio.PortfolioMarcosPaz.models.request.SkillRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.SkillResponse;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -32,8 +33,11 @@ public class SkillsMapper {
         skill.setImageSkillStack(request.getImageSkillStack());
         return skill;
     }
-    public List<SkillResponse> list (){
-        return null ;
+    public List<SkillResponse> list(List<Skill> skills){
+        List<SkillResponse> listResponse = new ArrayList<>();
+        skills.forEach( skill -> {
+            listResponse.add(entityToDto(skill));});
+        return  listResponse;
     }
 
 }
