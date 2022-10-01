@@ -35,23 +35,20 @@ public class SkillImpl  implements ISkill {
     }
     @Override
     public SkillResponse update(Long id, SkillRequest request) {
-        return null;
+        Skill skill = repository.findById(id).orElseThrow();
+        Skill response =   mapper.update(skill,request);
+        repository.save(response);
+        return mapper.entityToDto(response);
     }
     @Override
-
     public List<Skill> all() {
-
         List<Skill>  response = repository.findAll();
-        return response  ;
-
-    }
+        return response  ;}
     @Override
     public ResponseEntity<?> delete(Long id) {
         Optional<Skill> skill = repository.findById(id);
-        if (skill.isEmpty())
-        {
-            return new ResponseEntity<>(new Message("Skill Not exist"), HttpStatus.ACCEPTED);
-        }
+        if (skill.isEmpty()) {
+            return new ResponseEntity<>(new Message("Skill Not exist"), HttpStatus.ACCEPTED);}
         repository.deleteById(skill.get().getId());
         return new ResponseEntity<>(new Message("Skill deleted"), HttpStatus.ACCEPTED);
     }

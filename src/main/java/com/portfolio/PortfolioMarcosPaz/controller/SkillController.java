@@ -1,6 +1,5 @@
 package com.portfolio.PortfolioMarcosPaz.controller;
 
-import com.portfolio.PortfolioMarcosPaz.models.entity.Skill;
 import com.portfolio.PortfolioMarcosPaz.models.request.SkillRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.SkillResponse;
 import com.portfolio.PortfolioMarcosPaz.service.impl.SkillImpl;
@@ -10,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.function.EntityResponse;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -33,8 +31,11 @@ public class SkillController {
     }
 
     @PutMapping("/update/{id}")
-    public SkillResponse update(@Valid @PathVariable Long id ,  @RequestBody SkillRequest request) {
-            return null ;
+    public ResponseEntity<?> update(@Valid @PathVariable Long id , @RequestBody SkillRequest request) {
+
+               SkillResponse responseEntity = skillService.update(id,request);
+
+                   return new ResponseEntity(new Message("update"),HttpStatus.ACCEPTED);
     }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {

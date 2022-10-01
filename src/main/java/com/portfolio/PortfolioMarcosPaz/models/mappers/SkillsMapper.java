@@ -27,7 +27,6 @@ public class SkillsMapper {
         return response;
     }
     public Skill update(Skill skill, SkillRequest request){
-        skill.setId(request.getId());
         skill.setNameSkill(request.getNameSkill());
         skill.setPointSkill(request.getPointSkill());
         skill.setImageSkillStack(request.getImageSkillStack());
