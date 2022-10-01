@@ -1,7 +1,5 @@
 package com.portfolio.PortfolioMarcosPaz.models.entity;
 
-import lombok.*;
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -35,6 +33,7 @@ public class Skill {
     }
 
     public Long getId() {
+
         return id;
     }
 

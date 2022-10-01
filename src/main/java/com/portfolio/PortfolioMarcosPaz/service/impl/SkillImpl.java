@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SkillImpl  implements ISkill {
@@ -45,7 +46,13 @@ public class SkillImpl  implements ISkill {
 
     }
     @Override
-    public Skill delete(Long id) {
-        return null;
+    public ResponseEntity<?> delete(Long id) {
+        Optional<Skill> skill = repository.findById(id);
+        if (skill.isEmpty())
+        {
+            return new ResponseEntity<>(new Message("Skill Not exist"), HttpStatus.ACCEPTED);
+        }
+        repository.deleteById(skill.get().getId());
+        return new ResponseEntity<>(new Message("Skill deleted"), HttpStatus.ACCEPTED);
     }
 }
