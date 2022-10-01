@@ -20,7 +20,7 @@ public class SkillImpl  implements ISkill {
     SkillsMapper mapper;
     @Autowired
     SkillRepository repository ;
-    @Override
+    @ Override
     public ResponseEntity<?> create(SkillRequest request) {
         try {
             Skill response = mapper.dtoToEntity(request);
@@ -37,9 +37,12 @@ public class SkillImpl  implements ISkill {
         return null;
     }
     @Override
-    public List<SkillResponse> all() {
 
-         return null ;
+    public List<Skill> all() {
+
+        List<Skill>  response = repository.findAll();
+        return response  ;
+
     }
     @Override
     public Skill delete(Long id) {
