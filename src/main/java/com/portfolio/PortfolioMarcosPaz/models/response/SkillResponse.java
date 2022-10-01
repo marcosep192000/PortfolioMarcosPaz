@@ -3,6 +3,8 @@ package com.portfolio.PortfolioMarcosPaz.models.response;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 
@@ -10,9 +12,9 @@ public class SkillResponse implements Serializable {
     private  Long id;
     @NotBlank(message = "Name not blanck")
     private  String nameSkill;
-    @NotBlank(message = "Name not blanck")
+
     private  int pointSkill;
-    @NotBlank(message = "Name not blanck")
+    @NotBlank(message = "Image not blanck")
     private  String imageSkillStack;
 
     public SkillResponse() {

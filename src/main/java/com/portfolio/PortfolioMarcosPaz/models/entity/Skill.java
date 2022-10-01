@@ -3,7 +3,7 @@ package com.portfolio.PortfolioMarcosPaz.models.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = Skill.TABLE_NAME)
@@ -18,8 +18,9 @@ public class Skill {
     private Long id;
     @NotBlank(message = "Name not blanck")
     private  String nameSkill;
-    @NotBlank(message = "Name not blanck")
-    private int pointSkill;
+    @Min(value = 1, message = "min 1 ")
+    @Max(value = 100, message = "max 100")
+    private Integer pointSkill;
     @NotBlank(message = "Name not blanck")
     private String imageSkillStack;
 
