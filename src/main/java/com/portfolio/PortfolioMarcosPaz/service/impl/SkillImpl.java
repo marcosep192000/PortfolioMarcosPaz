@@ -21,6 +21,9 @@ public class SkillImpl  implements ISkill {
     SkillsMapper mapper;
     @Autowired
     SkillRepository repository ;
+
+    //agregar foto de framework
+
     @ Override
     public ResponseEntity<?> create(SkillRequest request) {
         try {

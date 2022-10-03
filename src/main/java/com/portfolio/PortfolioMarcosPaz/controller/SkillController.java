@@ -22,25 +22,23 @@ public class SkillController {
 
      @PostMapping("/create")
     public ResponseEntity<?> create(@Valid @RequestBody SkillRequest request) {
-               ResponseEntity<?> E = skillService.create(request);
-    return new ResponseEntity(E.getBody(),E.getStatusCode()) ;
+         ResponseEntity<?> E = skillService.create(request);
+         return new ResponseEntity(E.getBody(),E.getStatusCode()) ;
     }
     @GetMapping("/all")
     public ResponseEntity<List<SkillResponse>> all() {
-        return new ResponseEntity(skillService.all(), HttpStatus.ACCEPTED);
+            return new ResponseEntity(skillService.all(), HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@Valid @PathVariable Long id , @RequestBody SkillRequest request) {
-
-               SkillResponse responseEntity = skillService.update(id,request);
-
-                   return new ResponseEntity(new Message("update"),HttpStatus.ACCEPTED);
+            SkillResponse responseEntity = skillService.update(id,request);
+            return new ResponseEntity(new Message("update"),HttpStatus.ACCEPTED);
     }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
             ResponseEntity entity=   skillService.delete(id);
-        return new ResponseEntity<>(entity.getBody(),entity.getStatusCode());
+            return new ResponseEntity<>(entity.getBody(),entity.getStatusCode());
     }
 
 
