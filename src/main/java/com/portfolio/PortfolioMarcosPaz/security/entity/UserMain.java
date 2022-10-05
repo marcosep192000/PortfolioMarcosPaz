@@ -12,13 +12,15 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 public class UserMain implements UserDetails {
+
     private String  name;
     private String nameUser;
     private  String email;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
+
+
 
     public static  UserMain build (User user){
         List<GrantedAuthority> authorities =
