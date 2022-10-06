@@ -1,20 +1,21 @@
 package com.portfolio.PortfolioMarcosPaz.security.dto;
 
-import javax.validation.constraints.Email;
+
 import javax.validation.constraints.NotBlank;
 
-public class LoginUserDto {
+public class LoginUsuario {
+
     @NotBlank
-    private String nameUser;
+    private String nombreUsuario;
     @NotBlank
     private String password;
 
-    public String getNameUser() {
-        return nameUser;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setNameUser(String nameUser) {
-        this.nameUser = nameUser;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
     public String getPassword() {

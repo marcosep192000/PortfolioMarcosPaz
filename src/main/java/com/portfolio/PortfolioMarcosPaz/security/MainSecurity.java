@@ -1,8 +1,9 @@
-package com.portfolio.PortfolioMarcosPaz;
+package com.portfolio.PortfolioMarcosPaz.security;
+
 
 import com.portfolio.PortfolioMarcosPaz.security.jwt.JwtEntryPoint;
 import com.portfolio.PortfolioMarcosPaz.security.jwt.JwtTokenFilter;
-import com.portfolio.PortfolioMarcosPaz.security.service.UserDetailServiceImpl;
+import com.portfolio.PortfolioMarcosPaz.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,10 +27,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class MainSecurity extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UserDetailServiceImpl userDetailsService;
+    UserDetailsServiceImpl userDetailsService;
 
     //Devuelve el mensaje de no autorizado
-   @Autowired
+    @Autowired
     JwtEntryPoint jwtEntryPoint;
 
     @Bean

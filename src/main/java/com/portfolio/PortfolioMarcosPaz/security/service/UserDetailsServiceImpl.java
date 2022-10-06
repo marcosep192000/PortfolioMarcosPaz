@@ -1,9 +1,8 @@
 package com.portfolio.PortfolioMarcosPaz.security.service;
 
-import com.portfolio.PortfolioMarcosPaz.security.entity.User;
-import com.portfolio.PortfolioMarcosPaz.security.entity.UserMain;
+import com.portfolio.PortfolioMarcosPaz.security.entity.Usuario;
+import com.portfolio.PortfolioMarcosPaz.security.entity.UsuarioMain;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.AccessType;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,12 +12,15 @@ import javax.transaction.Transactional;
 
 @Service
 @Transactional
-public class UserDetailServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl  implements UserDetailsService {
     @Autowired
-    UserService userService;
+    UsuarioService usuarioService;
+
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.findByNameUser(username).get();
-      return UserMain.build(user);
+    public UserDetails loadUserByUsername(String nombreUsuario) throws UsernameNotFoundException {
+        Usuario usuario = usuarioService.getByUsuario(nombreUsuario).get();
+        return UsuarioMain.build(usuario);
     }
 }
+
+
