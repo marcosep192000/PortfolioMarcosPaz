@@ -4,7 +4,7 @@ import com.portfolio.PortfolioMarcosPaz.models.entity.Experience;
 import com.portfolio.PortfolioMarcosPaz.models.mappers.ExperienceMapper;
 import com.portfolio.PortfolioMarcosPaz.models.request.ExperienceRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.ExperienceResponse;
-import com.portfolio.PortfolioMarcosPaz.security.service.repository.ExperienceRepository;
+import com.portfolio.PortfolioMarcosPaz.repository.ExperienceRepository;
 import com.portfolio.PortfolioMarcosPaz.service.interfaces.IExperience;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

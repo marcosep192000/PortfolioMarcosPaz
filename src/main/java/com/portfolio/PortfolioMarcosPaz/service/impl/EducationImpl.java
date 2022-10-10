@@ -4,7 +4,7 @@ import com.portfolio.PortfolioMarcosPaz.models.entity.Education;
 import com.portfolio.PortfolioMarcosPaz.models.mappers.EducationMapper;
 import com.portfolio.PortfolioMarcosPaz.models.request.EducationRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.EducationResponse;
-import com.portfolio.PortfolioMarcosPaz.security.service.repository.EducationRepository;
+import com.portfolio.PortfolioMarcosPaz.repository.EducationRepository;
 import com.portfolio.PortfolioMarcosPaz.service.interfaces.IEducation;
 import com.portfolio.PortfolioMarcosPaz.util.exeptions.Message;
 import org.springframework.beans.factory.annotation.Autowired;
