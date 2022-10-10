@@ -1,6 +1,4 @@
 package com.portfolio.PortfolioMarcosPaz.security.controller;
-
-
 import com.portfolio.PortfolioMarcosPaz.security.dto.JwtDto;
 import com.portfolio.PortfolioMarcosPaz.security.dto.LoginUsuario;
 import com.portfolio.PortfolioMarcosPaz.security.dto.NuevoUsuario;
@@ -10,6 +8,7 @@ import com.portfolio.PortfolioMarcosPaz.security.enums.RolNombre;
 import com.portfolio.PortfolioMarcosPaz.security.jwt.JwtProvider;
 import com.portfolio.PortfolioMarcosPaz.security.service.RolService;
 import com.portfolio.PortfolioMarcosPaz.security.service.UsuarioService;
+import com.portfolio.PortfolioMarcosPaz.util.exeptions.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,45 +20,34 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 @RestController
 @RequestMapping("/auth")
 @CrossOrigin
 public class AuthController {
-
     @Autowired
     PasswordEncoder passwordEncoder;
-
     @Autowired
     AuthenticationManager authenticationManager;
-
     @Autowired
     UsuarioService usuarioService;
-
     @Autowired
     RolService rolService;
-
     @Autowired
     JwtProvider jwtProvider;
-
     @PostMapping("/add")
     public ResponseEntity<?> nuevoUsuario(@RequestBody NuevoUsuario nuevoUsuario,
                                           BindingResult bindingResult){
         if(usuarioService.existsByUsuario(nuevoUsuario.getNombreUsuario())){
-            return new ResponseEntity<>("Ese nombre ya existe", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new Message("This name exist"), HttpStatus.BAD_REQUEST);
         }
         if(usuarioService.existsByEmail(nuevoUsuario.getEmail())){
-            return new ResponseEntity<>("Ese email ya existe", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new Message("This mail exist"), HttpStatus.BAD_REQUEST);
         }
-
         Usuario usuario = new Usuario(nuevoUsuario.getNombreUsuario(),
                 nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()));
-
         Set<Rol> roles = new HashSet<>();
         roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
         if(nuevoUsuario.getRoles().contains("admin"))
@@ -73,7 +61,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
         if (bindingResult.hasErrors())
-            return new ResponseEntity("Campos mal", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity("error", HttpStatus.BAD_REQUEST);
         Authentication authentication =
                 authenticationManager.authenticate(
                         new UsernamePasswordAuthenticationToken(loginUsuario.getNombreUsuario(),
@@ -84,7 +72,7 @@ public class AuthController {
         JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
         return new ResponseEntity<>(jwtDto, HttpStatus.OK);
     }
-    @GetMapping("/listarUsuario")
+    @GetMapping("/all")
     @ResponseBody
     public List<Usuario> listar(){
         return usuarioService.us() ;

@@ -2,17 +2,13 @@ package com.portfolio.PortfolioMarcosPaz.service.impl;
 
 import com.portfolio.PortfolioMarcosPaz.models.entity.Project;
 import com.portfolio.PortfolioMarcosPaz.models.mappers.ProjectMapper;
-import com.portfolio.PortfolioMarcosPaz.models.request.ExperienceRequest;
 import com.portfolio.PortfolioMarcosPaz.models.request.ProjectRequest;
-import com.portfolio.PortfolioMarcosPaz.models.response.ExperienceResponse;
 import com.portfolio.PortfolioMarcosPaz.models.response.ProjectResponse;
-import com.portfolio.PortfolioMarcosPaz.repository.ProjectRepository;
+import com.portfolio.PortfolioMarcosPaz.security.service.repository.ProjectRepository;
 import com.portfolio.PortfolioMarcosPaz.service.interfaces.IProject;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
