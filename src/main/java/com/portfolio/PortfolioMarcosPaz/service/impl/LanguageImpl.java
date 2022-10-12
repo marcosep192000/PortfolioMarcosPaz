@@ -4,7 +4,7 @@ import com.portfolio.PortfolioMarcosPaz.models.entity.Language;
 import com.portfolio.PortfolioMarcosPaz.models.mappers.LanguageMapper;
 import com.portfolio.PortfolioMarcosPaz.models.request.LanguageRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.LanguageResponse;
-import com.portfolio.PortfolioMarcosPaz.security.service.repository.LanguageRepository;
+import com.portfolio.PortfolioMarcosPaz.repository.LanguageRepository;
 import com.portfolio.PortfolioMarcosPaz.service.interfaces.ILanguage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

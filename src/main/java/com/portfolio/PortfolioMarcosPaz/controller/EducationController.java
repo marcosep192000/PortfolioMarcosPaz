@@ -21,7 +21,7 @@ public class EducationController {
 
     @Autowired
     EducationImpl education;
- @PreAuthorize("hasRole('admin')")
+ //@PreAuthorize("hasRole('admin')")
     @PostMapping("/create")
     public ResponseEntity<EducationResponse> create( @Valid @RequestBody EducationRequest request){
         education.createEducation(request);

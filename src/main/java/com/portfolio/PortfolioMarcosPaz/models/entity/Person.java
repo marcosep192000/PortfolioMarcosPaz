@@ -3,6 +3,7 @@ package com.portfolio.PortfolioMarcosPaz.models.entity;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -30,13 +31,14 @@ public class Person {
     @NotBlank
     private String aboutMe;
 
-    @OneToMany(mappedBy= "person")
-    Set<Education> educationList;
+
+    @OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
+    List<Education> educationList;
 
     public Person() {
     }
 
-    public Person(Long id, String name, String lastName, String perfilPhotograpy, String direction, String state, String province, String mail, String stack, String aboutMe, Set<Education> educationList) {
+    public Person(Long id, String name, String lastName, String perfilPhotograpy, String direction, String state, String province, String mail, String stack, String aboutMe, List<Education> educationList) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -132,11 +134,11 @@ public class Person {
         this.aboutMe = aboutMe;
     }
 
-    public Set<Education> getEducationList() {
+    public List<Education> getEducationList() {
         return educationList;
     }
 
-    public void setEducationList(Set<Education> educationList) {
+    public void setEducationList(List<Education> educationList) {
         this.educationList = educationList;
     }
 }

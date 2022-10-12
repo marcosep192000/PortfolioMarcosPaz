@@ -1,5 +1,6 @@
 package com.portfolio.PortfolioMarcosPaz.models.response;
 
+import com.portfolio.PortfolioMarcosPaz.models.entity.Education;
 import com.portfolio.PortfolioMarcosPaz.models.request.EducationDto;
 import lombok.Data;
 
@@ -9,26 +10,26 @@ import java.io.Serializable;
 import java.util.Set;
 
 public class PersonResponse implements Serializable {
-    private  Long id;
+    private Long id;
     @NotBlank
-    private  String name;
+    private String name;
     @NotBlank
-    private  String lastName;
+    private String lastName;
     @NotBlank
-    private  String perfilPhotograpy;
+    private String perfilPhotograpy;
     @NotBlank
-    private  String Direction;
+    private String Direction;
     @NotBlank
     private String state;
     @NotBlank
-    private  String province;
+    private String province;
     @Email
-    private  String mail;
+    private String mail;
     @NotBlank
-    private  String stack;
+    private String stack;
     @NotBlank
-    private  String aboutMe;
-    private  Set<EducationDto> educationList;
+    private String aboutMe;
+    private Set<Education> educationList;
 
     public Long getId() {
         return id;
@@ -110,11 +111,11 @@ public class PersonResponse implements Serializable {
         this.aboutMe = aboutMe;
     }
 
-    public Set<EducationDto> getEducationList() {
+    public Set<Education> getEducationList() {
         return educationList;
     }
 
-    public void setEducationList(Set<EducationDto> educationList) {
+    public void setEducationList(Set<Education> educationList) {
         this.educationList = educationList;
     }
 }

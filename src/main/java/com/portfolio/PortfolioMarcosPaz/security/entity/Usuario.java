@@ -1,5 +1,7 @@
 package com.portfolio.PortfolioMarcosPaz.security.entity;
 
+import com.portfolio.PortfolioMarcosPaz.models.entity.Person;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -24,6 +26,10 @@ public class Usuario {
     private String email;
     @NotNull
     private String password;
+@OneToOne(cascade = CascadeType.ALL)
+@JoinColumn(name = "id_person")
+private Person person;
+
 
 
     @NotNull
@@ -40,7 +46,13 @@ public class Usuario {
         this.email = email;
         this.password = password;
     }
+    public Person getPerson() {
+        return person;
+    }
 
+    public void setPerson(Person person) {
+        this.person = person;
+    }
     public int getIdUsuario() {
         return idUsuario;
     }

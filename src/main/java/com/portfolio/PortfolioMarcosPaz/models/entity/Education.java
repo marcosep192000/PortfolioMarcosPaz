@@ -1,5 +1,6 @@
 package com.portfolio.PortfolioMarcosPaz.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,7 +28,7 @@ public class Education {
     private String ubicacion ;
     private String sector;
     private boolean state;
-
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id")
     private Person person;

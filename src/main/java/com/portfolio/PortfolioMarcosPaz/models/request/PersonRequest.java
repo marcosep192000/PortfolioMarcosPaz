@@ -27,10 +27,15 @@ public class PersonRequest implements Serializable {
     private  String aboutMe;
     private  Set<EducationDto> educationList;
 
-    public PersonRequest() {
+    public String getName() {
+        return name;
     }
 
-    public PersonRequest(String name, String lastName, String perfilPhotography, String direction, String state, String province, String mail, String stack, String aboutMe, Set<EducationDto> educationList) {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public PersonRequest(String name, String lastName, String perfilPhotography, String direction, String state, String province, String mail, String stack, String aboutMe) {
         this.name = name;
         this.lastName = lastName;
         this.perfilPhotography = perfilPhotography;
@@ -40,15 +45,7 @@ public class PersonRequest implements Serializable {
         this.mail = mail;
         this.stack = stack;
         this.aboutMe = aboutMe;
-        this.educationList = educationList;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getLastName() {
@@ -113,13 +110,5 @@ public class PersonRequest implements Serializable {
 
     public void setAboutMe(String aboutMe) {
         this.aboutMe = aboutMe;
-    }
-
-    public Set<EducationDto> getEducationList() {
-        return educationList;
-    }
-
-    public void setEducationList(Set<EducationDto> educationList) {
-        this.educationList = educationList;
     }
 }

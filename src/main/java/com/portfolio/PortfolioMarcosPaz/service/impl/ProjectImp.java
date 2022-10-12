@@ -4,7 +4,7 @@ import com.portfolio.PortfolioMarcosPaz.models.entity.Project;
 import com.portfolio.PortfolioMarcosPaz.models.mappers.ProjectMapper;
 import com.portfolio.PortfolioMarcosPaz.models.request.ProjectRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.ProjectResponse;
-import com.portfolio.PortfolioMarcosPaz.security.service.repository.ProjectRepository;
+import com.portfolio.PortfolioMarcosPaz.repository.ProjectRepository;
 import com.portfolio.PortfolioMarcosPaz.service.interfaces.IProject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
