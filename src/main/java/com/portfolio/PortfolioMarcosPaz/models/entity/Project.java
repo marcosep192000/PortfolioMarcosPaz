@@ -1,5 +1,7 @@
 package com.portfolio.PortfolioMarcosPaz.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,6 +19,11 @@ public class Project {
     private String image ;
     private Boolean state= true;
 
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_project")
+   private Person person;
+
     public static final String COLUMN_ID_NAME = "id";
 
     public Project() {
@@ -30,6 +37,14 @@ public class Project {
         this.linkRepo = linkRepo;
         this.image = image;
         this.state = state;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public Long getId() {

@@ -31,14 +31,31 @@ public class Person {
     @NotBlank
     private String aboutMe;
 
+    @OneToMany(mappedBy ="person",cascade = CascadeType.ALL)
+    List<Experience> experienceList;
 
     @OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
     List<Education> educationList;
 
+    @OneToMany(mappedBy = "person",cascade = CascadeType.ALL)
+    List<Language> languageList;
+
+    @OneToMany(mappedBy = "person",cascade = CascadeType.ALL)
+    List<Project> projectList;
+
+    @OneToMany(mappedBy = "person",cascade = CascadeType.ALL)
+    List<Skill> skillList;
+
+
+
+
+
+
+
     public Person() {
     }
 
-    public Person(Long id, String name, String lastName, String perfilPhotograpy, String direction, String state, String province, String mail, String stack, String aboutMe, List<Education> educationList) {
+    public Person(Long id, String name, String lastName, String perfilPhotograpy, String direction, String state, String province, String mail, String stack, String aboutMe, List<Experience> experienceList, List<Education> educationList, List<Language> languageList, List<Project> projectList, List<Skill> skillList) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -49,7 +66,43 @@ public class Person {
         this.mail = mail;
         this.stack = stack;
         this.aboutMe = aboutMe;
+        this.experienceList = experienceList;
         this.educationList = educationList;
+        this.languageList = languageList;
+        this.projectList = projectList;
+        this.skillList = skillList;
+    }
+
+    public List<Experience> getExperienceList() {
+        return experienceList;
+    }
+
+    public void setExperienceList(List<Experience> experienceList) {
+        this.experienceList = experienceList;
+    }
+
+    public List<Language> getLanguageList() {
+        return languageList;
+    }
+
+    public void setLanguageList(List<Language> languageList) {
+        this.languageList = languageList;
+    }
+
+    public List<Project> getProjectList() {
+        return projectList;
+    }
+
+    public void setProjectList(List<Project> projectList) {
+        this.projectList = projectList;
+    }
+
+    public List<Skill> getSkillList() {
+        return skillList;
+    }
+
+    public void setSkillList(List<Skill> skillList) {
+        this.skillList = skillList;
     }
 
     public static final String COLUMN_ID_NAME = "id";

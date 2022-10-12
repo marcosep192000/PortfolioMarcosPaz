@@ -1,5 +1,6 @@
 package com.portfolio.PortfolioMarcosPaz.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.aspectj.bridge.IMessage;
 
@@ -17,8 +18,13 @@ public class Language {
     private String language;
     @NotBlank(message = "Name is mandatory")
     private String levelEscrito;
-
     private String levelOral;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name= "id_languaje")
+    Person person;
+
 
     public Language() {
     }
@@ -29,6 +35,14 @@ public class Language {
         this.language = language;
         this.levelEscrito = levelEscrito;
         this.levelOral = levelOral;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public Long getId() {

@@ -77,6 +77,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/skills/all").permitAll()
                 .antMatchers("/portfolio/all").permitAll()
                 .antMatchers("/portfolio/create").permitAll()
+
                 .antMatchers("/education/create").permitAll()
                 .anyRequest().authenticated()
                 .and()

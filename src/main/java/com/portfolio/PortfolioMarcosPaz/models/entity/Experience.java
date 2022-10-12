@@ -1,5 +1,8 @@
 package com.portfolio.PortfolioMarcosPaz.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 
 @Entity
@@ -18,6 +21,11 @@ public class Experience {
     private String description;
     private Boolean state = true ;
 
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name= "id_experience")
+    Person person;
     public Experience() {
     }
 
@@ -30,6 +38,18 @@ public class Experience {
         this.description = description;
         this.state = state;
 
+    }
+
+    public Boolean getState() {
+        return state;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public Long getId() {

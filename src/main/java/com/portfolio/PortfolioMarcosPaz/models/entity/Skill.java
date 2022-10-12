@@ -1,5 +1,7 @@
 package com.portfolio.PortfolioMarcosPaz.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -22,6 +24,10 @@ public class Skill {
     @NotBlank(message = "Name not blanck")
     private String imageSkillStack;
 
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_skill")
+    private Person person;
     public Skill() {
     }
 
@@ -32,13 +38,24 @@ public class Skill {
         this.imageSkillStack = imageSkillStack;
     }
 
+    public void setPointSkill(Integer pointSkill) {
+        this.pointSkill = pointSkill;
+    }
+
+
     public Long getId() {
 
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
+    }
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public String getNameSkill() {
