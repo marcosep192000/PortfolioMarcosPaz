@@ -2,6 +2,7 @@ package com.portfolio.PortfolioMarcosPaz.security.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,10 +15,83 @@ public class NuevoUsuario {
     private String email;
     @NotBlank
     private String password;
+
+    @NotNull
+    private String name ;
+    @NotNull
+    private String lastName;
+    @NotNull
+    private String perfilPhotograpy;
+    @NotNull
+    private String state;
+    @NotNull
+    private String province;
+    @NotNull
+    private String stack;
+    @NotNull
+    private String aboutMe;
+
     //Por defecto crea un usuario normal
     //Si quiero un usuario Admin debo pasar este campo roles
     private Set<String> roles = new HashSet<>();
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPerfilPhotograpy() {
+        return perfilPhotograpy;
+    }
+
+    public void setPerfilPhotograpy(String perfilPhotograpy) {
+        this.perfilPhotograpy = perfilPhotograpy;
+    }
+
+
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getStack() {
+        return stack;
+    }
+
+    public void setStack(String stack) {
+        this.stack = stack;
+    }
+
+    public String getAboutMe() {
+        return aboutMe;
+    }
+
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
+    }
 
     public String getNombreUsuario() {
         return nombreUsuario;

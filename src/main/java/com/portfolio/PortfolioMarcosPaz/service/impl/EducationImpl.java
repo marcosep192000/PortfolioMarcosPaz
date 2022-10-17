@@ -5,7 +5,10 @@ import com.portfolio.PortfolioMarcosPaz.models.mappers.EducationMapper;
 import com.portfolio.PortfolioMarcosPaz.models.request.EducationRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.EducationResponse;
 import com.portfolio.PortfolioMarcosPaz.repository.EducationRepository;
+import com.portfolio.PortfolioMarcosPaz.security.entity.Usuario;
+import com.portfolio.PortfolioMarcosPaz.security.repository.UsuarioRepository;
 import com.portfolio.PortfolioMarcosPaz.service.interfaces.IEducation;
+import com.portfolio.PortfolioMarcosPaz.util.exeptions.GetUser;
 import com.portfolio.PortfolioMarcosPaz.util.exeptions.Message;
 import com.sun.jdi.event.ExceptionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +26,20 @@ public class EducationImpl implements IEducation {
     EducationRepository educationRepository;
     @Autowired
     EducationMapper mapper;
+    @Autowired
+    UsuarioRepository usuarioRepository;
+
+
     @Override
     public ResponseEntity<?> createEducation(EducationRequest request) {
    try {
-       Education response = mapper.dtoToEntity(request);
+       GetUser user = new GetUser();
+       Usuario usuario = usuarioRepository.findByNombreUsuario(user.getUsuario()).orElseThrow();
+
+       Education response = mapper.dtoToEntity(request, usuario);
        educationRepository.save(response);
-       return new ResponseEntity(mapper.entityToDto(response),HttpStatus.CREATED) ;
+       mapper.entityToDto(response);
+       return new ResponseEntity( new Message("Education create "),HttpStatus.CREATED) ;
    }
    catch (Exception e ) {
        return new ResponseEntity(new Message("error"), HttpStatus.BAD_REQUEST);

@@ -19,77 +19,56 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
-    @NotNull
+    @NotBlank
     @Column(unique = true)
     private String nombreUsuario;
-    @NotNull
+    @NotBlank
     @Email
     @Column(unique = true)
     private String email;
-    @NotNull
+    @NotBlank
     private String password;
-    @NotBlank
+    @NotNull
     private String name ;
-    @NotBlank
+    @NotNull
     private String lastName;
-    @NotBlank
+    @NotNull
     private String perfilPhotograpy;
-    @NotBlank
-    private String Direction;
-    @NotBlank
+
+    @NotNull
     private String state;
-    @NotBlank
+    @NotNull
     private String province;
-    @Email
-    private String mail;
-    @NotBlank
+   @NotNull
     private String stack;
-    @NotBlank
+    @NotNull
+
     private String aboutMe;
 
-@OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
-private List<Education> educationList;
-
-    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
-    private List<Experience> experienceList;
- @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
- private List<Project> projectList;
-
-    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
-    private List<Skill> skillList ;
-
-    public List<Education> getEducationList() {
-        return educationList;
-    }
-
-    public void setEducationList(List<Education> educationList) {
-        this.educationList = educationList;
-    }
-
-    public void addSkills(Skill skill)
-    {
-        skillList.add(skill);
-        skill.setUsuario(this);
-    }
-
-    @OneToMany(mappedBy = "usuario" ,cascade = CascadeType.ALL)
-    private List<Language> languajeList= new ArrayList<>();
-
-    public void addLanguaje(Language language) {
-        this.languajeList.add(language);
-        language.setUsuario(this);
-    }
-
-    @NotNull
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_usuario"),
             inverseJoinColumns = @JoinColumn(name = "rol_id"))
     private Set<Rol> roles = new HashSet<>();
 
+    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
+private List<Education> educationList;
+
+    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
+    private List<Experience> experienceList;
+    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
+ private List<Project> projectList;
+
+    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
+    private List<Skill> skillList ;
+
+    @OneToMany(mappedBy = "usuario" ,cascade = CascadeType.ALL)
+    private List<Language> languajeList= new ArrayList<>();
+
+
     public Usuario() {
     }
 
-    public Usuario(Long idUsuario, String nombreUsuario, String email, String password, String name, String lastName, String perfilPhotograpy, String direction, String state, String province, String mail, String stack, String aboutMe, Set<Language> languageSet, Set<Rol> roles) {
+    public Usuario(Long idUsuario, String nombreUsuario, String email, String password, String name, String lastName, String perfilPhotograpy, String direction, String state, String province, String mail, String stack, String aboutMe, Set<Rol> roles, List<Education> educationList, List<Experience> experienceList, List<Project> projectList, List<Skill> skillList, List<Language> languajeList) {
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
@@ -97,50 +76,23 @@ private List<Education> educationList;
         this.name = name;
         this.lastName = lastName;
         this.perfilPhotograpy = perfilPhotograpy;
-        Direction = direction;
+
         this.state = state;
         this.province = province;
-        this.mail = mail;
+
         this.stack = stack;
         this.aboutMe = aboutMe;
-
         this.roles = roles;
-    }
-
-    public List<Experience> getExperienceList() {
-        return experienceList;
-    }
-
-    public void setExperienceList(List<Experience> experienceList) {
+        this.educationList = educationList;
         this.experienceList = experienceList;
-    }
-
-    public List<Language> getLanguajeList() {
-        return languajeList;
-    }
-
-    public void setLanguajeList(List<Language> languajeList) {
+        this.projectList = projectList;
+        this.skillList = skillList;
         this.languajeList = languajeList;
     }
 
+    public Usuario(String nombreUsuario, String email, String encode) {
 
-    public List<Project> getProjectList() {
-        return projectList;
     }
-
-    public void setProjectList(List<Project> projectList) {
-        this.projectList = projectList;
-    }
-
-    public List<Skill> getSkillList() {
-        return skillList;
-    }
-
-    public void setSkillList(List<Skill> skillList) {
-        this.skillList = skillList;
-    }
-
-
 
     public Long getIdUsuario() {
         return idUsuario;
@@ -149,22 +101,6 @@ private List<Education> educationList;
     public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
-
-
-    public List<Language> getLanguaje() {
-        return languajeList;
-    }
-
-    public void setLanguaje(List<Language> languaje) {
-        this.languajeList = languaje;
-    }
-
-    public Usuario(String nombreUsuario, String email, String password) {
-        this.nombreUsuario = nombreUsuario;
-        this.email = email;
-        this.password = password;
-    }
-
 
     public String getNombreUsuario() {
         return nombreUsuario;
@@ -188,14 +124,6 @@ private List<Education> educationList;
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Set<Rol> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Rol> roles) {
-        this.roles = roles;
     }
 
     public String getName() {
@@ -222,13 +150,7 @@ private List<Education> educationList;
         this.perfilPhotograpy = perfilPhotograpy;
     }
 
-    public String getDirection() {
-        return Direction;
-    }
 
-    public void setDirection(String direction) {
-        Direction = direction;
-    }
 
     public String getState() {
         return state;
@@ -246,14 +168,6 @@ private List<Education> educationList;
         this.province = province;
     }
 
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
     public String getStack() {
         return stack;
     }
@@ -268,5 +182,53 @@ private List<Education> educationList;
 
     public void setAboutMe(String aboutMe) {
         this.aboutMe = aboutMe;
+    }
+
+    public Set<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Rol> roles) {
+        this.roles = roles;
+    }
+
+    public List<Education> getEducationList() {
+        return educationList;
+    }
+
+    public void setEducationList(List<Education> educationList) {
+        this.educationList = educationList;
+    }
+
+    public List<Experience> getExperienceList() {
+        return experienceList;
+    }
+
+    public void setExperienceList(List<Experience> experienceList) {
+        this.experienceList = experienceList;
+    }
+
+    public List<Project> getProjectList() {
+        return projectList;
+    }
+
+    public void setProjectList(List<Project> projectList) {
+        this.projectList = projectList;
+    }
+
+    public List<Skill> getSkillList() {
+        return skillList;
+    }
+
+    public void setSkillList(List<Skill> skillList) {
+        this.skillList = skillList;
+    }
+
+    public List<Language> getLanguajeList() {
+        return languajeList;
+    }
+
+    public void setLanguajeList(List<Language> languajeList) {
+        this.languajeList = languajeList;
     }
 }
