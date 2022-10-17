@@ -1,7 +1,5 @@
 package com.portfolio.PortfolioMarcosPaz.models.request;
 
-import lombok.*;
-
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
@@ -15,15 +13,18 @@ public class LanguageRequest implements Serializable {
     @NotBlank(message = "Name is mandatory")
     private  String levelOral;
 
+
     public LanguageRequest(Long id, String language, String levelEscrito, String levelOral) {
         this.id = id;
         this.language = language;
         this.levelEscrito = levelEscrito;
         this.levelOral = levelOral;
+
     }
 
     public LanguageRequest() {
     }
+
 
     public Long getId() {
         return id;

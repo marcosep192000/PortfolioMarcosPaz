@@ -3,25 +3,32 @@ package com.portfolio.PortfolioMarcosPaz.controller;
 import com.portfolio.PortfolioMarcosPaz.models.entity.Language;
 import com.portfolio.PortfolioMarcosPaz.models.request.LanguageRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.LanguageResponse;
+import com.portfolio.PortfolioMarcosPaz.security.repository.UsuarioRepository;
 import com.portfolio.PortfolioMarcosPaz.service.impl.LanguageImpl;
 import com.portfolio.PortfolioMarcosPaz.util.exeptions.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
-@Controller
+@RestController
+@CrossOrigin
 @RequestMapping("/language")
 public class LanguageController {
 @Autowired
     LanguageImpl languageService;
-@PostMapping("/create-language")
-    public ResponseEntity<LanguageResponse>save( @Valid  @RequestBody LanguageRequest request) {
-    return new ResponseEntity(languageService.save(request),HttpStatus.CREATED) ;
+@Autowired
+UsuarioRepository usuarioRepo;
+
+
+
+@PostMapping("/create")
+    public ResponseEntity<LanguageResponse>save(@Valid @RequestBody LanguageRequest request) {
+    languageService.save(request);
+    return new ResponseEntity("",HttpStatus.CREATED) ;
 }
 @PutMapping("/update-language")
     public ResponseEntity<LanguageResponse> update(@Valid @RequestBody LanguageRequest request) {

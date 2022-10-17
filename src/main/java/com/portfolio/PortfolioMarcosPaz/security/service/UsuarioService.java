@@ -2,6 +2,7 @@ package com.portfolio.PortfolioMarcosPaz.security.service;
 
 import com.portfolio.PortfolioMarcosPaz.security.entity.Usuario;
 import com.portfolio.PortfolioMarcosPaz.security.repository.UsuarioRepository;
+import com.portfolio.PortfolioMarcosPaz.util.exeptions.GetUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,10 @@ public class UsuarioService {
         return usuarioRepository.findByNombreUsuario(nombreUsuario);
     }
 
+    public Usuario findByID(Long id) {
+        return usuarioRepository.findById(id).orElseThrow();
+    }
+
     public Boolean existsByUsuario(String nombreUsuario) {
         return usuarioRepository.existsByNombreUsuario(nombreUsuario);
     }
@@ -31,9 +36,15 @@ public class UsuarioService {
         usuarioRepository.save(usuario);
     }
     public List<Usuario> us()
-    {return usuarioRepository.findAll();
-    }
+    {return usuarioRepository.findAll();}
+
+    //Recupera el user de la session .
+    public Usuario userSess(Long id ){
+       Usuario usuario = usuarioRepository.findById(id).orElseThrow();
 
 
 
+        return usuario;
+
+}
 }

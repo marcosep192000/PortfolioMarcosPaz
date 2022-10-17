@@ -5,7 +5,10 @@ import com.portfolio.PortfolioMarcosPaz.models.mappers.ExperienceMapper;
 import com.portfolio.PortfolioMarcosPaz.models.request.ExperienceRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.ExperienceResponse;
 import com.portfolio.PortfolioMarcosPaz.repository.ExperienceRepository;
+import com.portfolio.PortfolioMarcosPaz.security.entity.Usuario;
+import com.portfolio.PortfolioMarcosPaz.security.repository.UsuarioRepository;
 import com.portfolio.PortfolioMarcosPaz.service.interfaces.IExperience;
+import com.portfolio.PortfolioMarcosPaz.util.exeptions.GetUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +21,14 @@ public class ExperienceIpl implements IExperience {
 @Autowired
     ExperienceMapper mapper;
 @Autowired
+    UsuarioRepository usuarioRepository;
+@Autowired
 ExperienceRepository experienceService;
     @Override
     public ExperienceResponse saveExperience(ExperienceRequest request) {
-        Experience experience = mapper.dtoToExperiencia(request);
+        GetUser user = new GetUser();
+        Usuario usuario = usuarioRepository.findByNombreUsuario(user.getUsuario()).orElseThrow();
+        Experience experience = mapper.dtoToExperiencia(request,usuario);
         experienceService.save(experience);
         return mapper.experienceToDto(experience);
     }

@@ -1,6 +1,7 @@
 package com.portfolio.PortfolioMarcosPaz.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.portfolio.PortfolioMarcosPaz.security.entity.Usuario;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -26,16 +27,19 @@ public class Skill {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id_skill")
-    private Person person;
+    @JoinColumn(name="id_skills")
+    private Usuario usuario;
     public Skill() {
     }
 
-    public Skill(Long id, String nameSkill, int pointSkill, String imageSkillStack) {
+
+
+    public Skill(Long id, String nameSkill, Integer pointSkill, String imageSkillStack, Usuario usuario) {
         this.id = id;
         this.nameSkill = nameSkill;
         this.pointSkill = pointSkill;
         this.imageSkillStack = imageSkillStack;
+        this.usuario = usuario;
     }
 
     public void setPointSkill(Integer pointSkill) {
@@ -47,16 +51,19 @@ public class Skill {
 
         return id;
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
-    public Person getPerson() {
-        return person;
-    }
 
-    public void setPerson(Person person) {
-        this.person = person;
-    }
 
     public String getNameSkill() {
         return nameSkill;

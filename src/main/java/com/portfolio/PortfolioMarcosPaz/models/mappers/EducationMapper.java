@@ -19,6 +19,7 @@ public class EducationMapper {
         education.setDateEnd(request.getDateEnd());
         education.setDateStart(request.getDateStart());
         education.setUbicacion(request.getUbicacion());
+
         return education;
     }
     public EducationResponse entityToDto(Education education){

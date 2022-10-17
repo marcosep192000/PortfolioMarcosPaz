@@ -1,6 +1,7 @@
 package com.portfolio.PortfolioMarcosPaz.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.portfolio.PortfolioMarcosPaz.security.entity.Usuario;
 
 import javax.persistence.*;
 
@@ -21,15 +22,15 @@ public class Project {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id_project")
-   private Person person;
+    @JoinColumn(name="id_projects")
+   private Usuario usuario;
 
     public static final String COLUMN_ID_NAME = "id";
 
     public Project() {
     }
 
-    public Project(Long id, String title, String subTitle, String description, String linkRepo, String image, Boolean state) {
+    public Project(Long id, String title, String subTitle, String description, String linkRepo, String image, Boolean state, Usuario usuario) {
         this.id = id;
         this.title = title;
         this.subTitle = subTitle;
@@ -37,14 +38,15 @@ public class Project {
         this.linkRepo = linkRepo;
         this.image = image;
         this.state = state;
+        this.usuario = usuario;
     }
 
-    public Person getPerson() {
-        return person;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Long getId() {

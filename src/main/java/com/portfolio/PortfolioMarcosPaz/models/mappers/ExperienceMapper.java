@@ -3,6 +3,7 @@ package com.portfolio.PortfolioMarcosPaz.models.mappers;
 import com.portfolio.PortfolioMarcosPaz.models.entity.Experience;
 import com.portfolio.PortfolioMarcosPaz.models.request.ExperienceRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.ExperienceResponse;
+import com.portfolio.PortfolioMarcosPaz.security.entity.Usuario;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -21,7 +22,7 @@ public class ExperienceMapper {
             response.setDescription(experience.getDescription());
             return response;
     }
-    public Experience dtoToExperiencia(ExperienceRequest experience) {
+    public Experience dtoToExperiencia(ExperienceRequest experience, Usuario usuario ) {
         Experience experience1 = new Experience();
         experience1.setId(experience.getId());
         experience1.setName(experience.getName());
@@ -29,6 +30,7 @@ public class ExperienceMapper {
         experience1.setStartDate(experience.getStartDate());
         experience1.setFinallyDate(experience.getFinallyDate());
         experience1.setDescription(experience.getDescription());
+        experience1.setUsuario(usuario);
         return experience1;
     }
             public Experience updateExperience(Experience experience, ExperienceRequest experienceRequest){

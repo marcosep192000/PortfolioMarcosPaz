@@ -3,6 +3,7 @@ package com.portfolio.PortfolioMarcosPaz.models.mappers;
 import com.portfolio.PortfolioMarcosPaz.models.entity.Project;
 import com.portfolio.PortfolioMarcosPaz.models.request.ProjectRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.ProjectResponse;
+import com.portfolio.PortfolioMarcosPaz.security.entity.Usuario;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,13 +12,14 @@ import java.util.List;
 @Component
 public class ProjectMapper {
 
-    public Project dtoToEntity(ProjectRequest request) {
+    public Project dtoToEntity(ProjectRequest request, Usuario usuario) {
         Project project = new Project();
         project.setDescription(request.getDescription());
         project.setTitle(request.getTitle());
         project.setSubTitle(request.getSubTitle());
         project.setImage(request.getImage());
         project.setLinkRepo(request.getLinkRepo());
+        project.setUsuario(usuario);
         return project;
     }
     public ProjectResponse entityToDto(Project project) {

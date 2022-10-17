@@ -3,7 +3,10 @@ package com.portfolio.PortfolioMarcosPaz.controller;
 import com.portfolio.PortfolioMarcosPaz.models.entity.Education;
 import com.portfolio.PortfolioMarcosPaz.models.request.EducationRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.EducationResponse;
+import com.portfolio.PortfolioMarcosPaz.security.entity.Usuario;
+import com.portfolio.PortfolioMarcosPaz.security.repository.UsuarioRepository;
 import com.portfolio.PortfolioMarcosPaz.service.impl.EducationImpl;
+import com.portfolio.PortfolioMarcosPaz.util.exeptions.GetUser;
 import com.portfolio.PortfolioMarcosPaz.util.exeptions.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,14 +21,15 @@ import java.util.List;
 @Controller
 @RequestMapping("/education")
 public class EducationController {
-
+@Autowired
+    UsuarioRepository usuarioRepository;
     @Autowired
     EducationImpl education;
  //@PreAuthorize("hasRole('admin')")
     @PostMapping("/create")
-    public ResponseEntity<EducationResponse> create( @Valid @RequestBody EducationRequest request){
-        education.createEducation(request);
-        return new ResponseEntity(new Message("Created"), HttpStatus.CREATED);
+    public ResponseEntity<?> create( @Valid @RequestBody EducationRequest request){
+        ResponseEntity<?> responseEntity= education.createEducation(request);
+       return new ResponseEntity(responseEntity.getBody(), responseEntity.getStatusCode());
     }
 
     @GetMapping("/all")
@@ -34,7 +38,7 @@ public class EducationController {
      return new ResponseEntity (educations,HttpStatus.ACCEPTED);
     }
 
-    @PreAuthorize("hasRole('admin')")
+
     @PutMapping("/update/{id}")
     public ResponseEntity update(@Valid @PathVariable Long id,@RequestBody EducationRequest request)
     {

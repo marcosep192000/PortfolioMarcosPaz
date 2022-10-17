@@ -1,4 +1,9 @@
 package com.portfolio.PortfolioMarcosPaz.security.controller;
+import com.portfolio.PortfolioMarcosPaz.models.entity.Language;
+import com.portfolio.PortfolioMarcosPaz.models.mappers.LanguageMapper;
+import com.portfolio.PortfolioMarcosPaz.models.request.LanguageRequest;
+import com.portfolio.PortfolioMarcosPaz.models.response.LanguageResponse;
+import com.portfolio.PortfolioMarcosPaz.repository.LanguageRepository;
 import com.portfolio.PortfolioMarcosPaz.security.dto.JwtDto;
 import com.portfolio.PortfolioMarcosPaz.security.dto.LoginUsuario;
 import com.portfolio.PortfolioMarcosPaz.security.dto.NuevoUsuario;
@@ -8,10 +13,13 @@ import com.portfolio.PortfolioMarcosPaz.security.enums.RolNombre;
 import com.portfolio.PortfolioMarcosPaz.security.jwt.JwtProvider;
 import com.portfolio.PortfolioMarcosPaz.security.service.RolService;
 import com.portfolio.PortfolioMarcosPaz.security.service.UsuarioService;
+import com.portfolio.PortfolioMarcosPaz.service.impl.LanguageImpl;
+import com.portfolio.PortfolioMarcosPaz.util.exeptions.GetUser;
 import com.portfolio.PortfolioMarcosPaz.util.exeptions.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,7 +30,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/auth")
 @CrossOrigin
@@ -35,6 +45,10 @@ public class AuthController {
     UsuarioService usuarioService;
     @Autowired
     RolService rolService;
+    @Autowired
+    LanguageMapper mapper;
+    @Autowired
+    LanguageImpl languageService;
     @Autowired
     JwtProvider jwtProvider;
     @PostMapping("/add")
@@ -57,7 +71,6 @@ public class AuthController {
 
         return new ResponseEntity<>("Usuario creado", HttpStatus.CREATED);
     }
-
     @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
         if (bindingResult.hasErrors())
@@ -73,10 +86,18 @@ public class AuthController {
         return new ResponseEntity<>(jwtDto, HttpStatus.OK);
     }
     @GetMapping("/all")
-    @ResponseBody
     public List<Usuario> listar(){
-        return usuarioService.us() ;
+        GetUser user = new
+                GetUser();
+
+        System.out.println(user.getUsuario());
+        return usuarioService.us();
     }
+    @GetMapping("/portfolio")
+    public Usuario createPostGivenUser(Authentication authentication) {
+         Usuario user=usuarioService.getByUsuario(authentication.getName()).orElseThrow();
+            return user;
+        }
 }
 
 

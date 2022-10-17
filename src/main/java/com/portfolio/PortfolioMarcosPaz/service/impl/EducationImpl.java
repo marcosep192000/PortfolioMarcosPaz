@@ -7,7 +7,10 @@ import com.portfolio.PortfolioMarcosPaz.models.response.EducationResponse;
 import com.portfolio.PortfolioMarcosPaz.repository.EducationRepository;
 import com.portfolio.PortfolioMarcosPaz.service.interfaces.IEducation;
 import com.portfolio.PortfolioMarcosPaz.util.exeptions.Message;
+import com.sun.jdi.event.ExceptionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,10 +24,15 @@ public class EducationImpl implements IEducation {
     @Autowired
     EducationMapper mapper;
     @Override
-    public EducationResponse createEducation(EducationRequest request) {
-        Education response = mapper.dtoToEntity(request);
-        educationRepository.save(response);
-        return  mapper.entityToDto(response);
+    public ResponseEntity<?> createEducation(EducationRequest request) {
+   try {
+       Education response = mapper.dtoToEntity(request);
+       educationRepository.save(response);
+       return new ResponseEntity(mapper.entityToDto(response),HttpStatus.CREATED) ;
+   }
+   catch (Exception e ) {
+       return new ResponseEntity(new Message("error"), HttpStatus.BAD_REQUEST);
+   }
     }
 
     @Override

@@ -5,7 +5,10 @@ import com.portfolio.PortfolioMarcosPaz.models.mappers.ProjectMapper;
 import com.portfolio.PortfolioMarcosPaz.models.request.ProjectRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.ProjectResponse;
 import com.portfolio.PortfolioMarcosPaz.repository.ProjectRepository;
+import com.portfolio.PortfolioMarcosPaz.security.entity.Usuario;
+import com.portfolio.PortfolioMarcosPaz.security.repository.UsuarioRepository;
 import com.portfolio.PortfolioMarcosPaz.service.interfaces.IProject;
+import com.portfolio.PortfolioMarcosPaz.util.exeptions.GetUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +21,15 @@ public class ProjectImp implements IProject {
     ProjectRepository projectRepository;
     @Autowired
     ProjectMapper mapper;
+    @Autowired
+    UsuarioRepository usuarioRepository;
+
     @Override
     public ProjectResponse save(ProjectRequest request) {
-        Project project = mapper.dtoToEntity(request);
+
+        GetUser user = new GetUser();
+        Usuario usuario = usuarioRepository.findByNombreUsuario(user.getUsuario()).orElseThrow();
+        Project project = mapper.dtoToEntity(request,usuario);
         projectRepository.save(project);
         return  mapper.entityToDto(project);
     }

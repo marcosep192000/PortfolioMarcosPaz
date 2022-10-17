@@ -1,7 +1,7 @@
 package com.portfolio.PortfolioMarcosPaz.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import com.portfolio.PortfolioMarcosPaz.security.entity.Usuario;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -30,16 +30,10 @@ public class Education {
     private boolean state;
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_id")
-    private Person person;
+    @JoinColumn(name="person_id", nullable=false)
+    private Usuario usuario;
 
-    public Person getPerson() {
-        return person;
-    }
 
-    public void setPerson(Person person) {
-        this.person = person;
-    }
 
 
     public Education() {
@@ -54,6 +48,7 @@ public class Education {
         this.ubicacion = ubicacion;
         this.sector = sector;
         this.state = state;
+
     }
 
     public Long getId() {
@@ -119,4 +114,6 @@ public class Education {
     public void setState(boolean state) {
         this.state = state;
     }
+
+
 }
