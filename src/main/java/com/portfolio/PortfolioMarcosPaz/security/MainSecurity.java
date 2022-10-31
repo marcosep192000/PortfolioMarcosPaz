@@ -7,6 +7,7 @@ import com.portfolio.PortfolioMarcosPaz.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -71,11 +72,14 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers("/auth/login").permitAll()
-                .antMatchers("/education/**").permitAll()
+                .antMatchers("/auth/all").permitAll()
+                .antMatchers(HttpMethod.GET,"/education/all").permitAll()
                 .antMatchers("/language/**").permitAll()
-                .antMatchers("/experience/**").authenticated()
-                .antMatchers("/project/**").authenticated()
-                .antMatchers("/skills/**").authenticated()
+                .antMatchers("/experience/all").permitAll()
+                .antMatchers(HttpMethod.POST,"/experience/create").permitAll()
+                .antMatchers(HttpMethod.GET,"/project/all").permitAll()
+                .antMatchers("/skills/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/skills/all").permitAll()
                 .antMatchers("/portfolio/**").permitAll()
                 .anyRequest().authenticated()
                 .and()

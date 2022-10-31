@@ -30,10 +30,6 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     @Autowired
     UserDetailsServiceImpl userDetailsService;
 
-    // El token esta formado por:
-    // cabecera --> Authorization: Bearer token
-    //Hace las comprobaciones
-    // Este metodo se hace cada vez que se le haga una peticion al sever
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,

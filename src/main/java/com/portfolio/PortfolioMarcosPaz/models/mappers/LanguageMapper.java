@@ -27,9 +27,9 @@ public class LanguageMapper {
 language.setUsuario(usuario);
         return language;
     }
-    public Language UpdateLanguage(Language language , LanguageRequest languageResponse)
+    public Language UpdateLanguage(Long  id  , LanguageRequest languageResponse)
     {
-
+        Language language = new Language();
         language.setLanguage(languageResponse.getLanguage());
         language.setLevelOral(languageResponse.getLevelOral());
         language.setLevelEscrito(languageResponse.getLevelEscrito());

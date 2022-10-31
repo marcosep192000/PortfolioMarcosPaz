@@ -19,6 +19,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/education")
 public class EducationController {
 @Autowired

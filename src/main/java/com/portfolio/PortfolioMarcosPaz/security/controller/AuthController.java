@@ -7,6 +7,7 @@ import com.portfolio.PortfolioMarcosPaz.security.entity.Rol;
 import com.portfolio.PortfolioMarcosPaz.security.entity.Usuario;
 import com.portfolio.PortfolioMarcosPaz.security.enums.RolNombre;
 import com.portfolio.PortfolioMarcosPaz.security.jwt.JwtProvider;
+import com.portfolio.PortfolioMarcosPaz.security.repository.UsuarioRepository;
 import com.portfolio.PortfolioMarcosPaz.security.service.RolService;
 import com.portfolio.PortfolioMarcosPaz.security.service.UsuarioService;
 import com.portfolio.PortfolioMarcosPaz.service.impl.LanguageImpl;
@@ -28,9 +29,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin
 public class AuthController {
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -38,6 +39,8 @@ public class AuthController {
     AuthenticationManager authenticationManager;
     @Autowired
     UsuarioService usuarioService;
+    @Autowired
+    UsuarioRepository usuarioRepository;
     @Autowired
     RolService rolService;
     @Autowired
@@ -97,12 +100,11 @@ public class AuthController {
     }
     @GetMapping("/all")
     public List<Usuario> listar(){
-        GetUser user = new
-                GetUser();
 
-        System.out.println(user.getUsuario());
-        return usuarioService.us();
+
+        return usuarioRepository.findAll();
     }
+
     @GetMapping("/portfolio")
     public Usuario createPostGivenUser(Authentication authentication) {
          Usuario user=usuarioService.getByUsuario(authentication.getName()).orElseThrow();

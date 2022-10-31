@@ -10,17 +10,21 @@ import org.springframework.boot.autoconfigure.data.mongo.ReactiveStreamsMongoCli
 import org.springframework.boot.autoconfigure.session.RedisSessionProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/experience")
+@CrossOrigin("http://localhost:4200")
 public class ExperienceController {
     @Autowired
     ExperienceIpl experienceService;
+
+
     @PostMapping("/create")
     public ResponseEntity<ExperienceResponse> create(@Valid @RequestBody ExperienceRequest request){
          experienceService.saveExperience(request);

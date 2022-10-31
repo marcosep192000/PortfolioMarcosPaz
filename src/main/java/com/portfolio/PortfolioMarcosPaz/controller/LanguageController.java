@@ -26,15 +26,17 @@ UsuarioRepository usuarioRepo;
 
 
 @PostMapping("/create")
-    public ResponseEntity<LanguageResponse>save(@Valid @RequestBody LanguageRequest request) {
-    languageService.save(request);
-    return new ResponseEntity("",HttpStatus.CREATED) ;
+    public ResponseEntity<?>save(@Valid @RequestBody LanguageRequest request) {
+   ResponseEntity<?> responseEntity= languageService.save(request);
+    return new ResponseEntity(responseEntity.getBody(),responseEntity.getStatusCode()) ;
 }
-@PutMapping("/update-language")
-    public ResponseEntity<LanguageResponse> update(@Valid @RequestBody LanguageRequest request) {
+@PutMapping("/update/{id}")
+    public ResponseEntity<LanguageResponse> update(@Valid @RequestBody LanguageRequest request,@PathVariable Long id) {
+
     LanguageResponse l= languageService.update(request);
     return new ResponseEntity("Language update",HttpStatus.ACCEPTED);
 }
+
     @GetMapping("/all-languages")
     public ResponseEntity<List<LanguageResponse>> allLanguages()
     {

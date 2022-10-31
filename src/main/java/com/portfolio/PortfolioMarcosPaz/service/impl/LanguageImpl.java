@@ -9,6 +9,7 @@ import com.portfolio.PortfolioMarcosPaz.security.entity.Usuario;
 import com.portfolio.PortfolioMarcosPaz.security.repository.UsuarioRepository;
 import com.portfolio.PortfolioMarcosPaz.service.interfaces.ILanguage;
 import com.portfolio.PortfolioMarcosPaz.util.exeptions.GetUser;
+import com.portfolio.PortfolioMarcosPaz.util.exeptions.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,21 +29,25 @@ public class LanguageImpl implements ILanguage {
 
     @Override
     public ResponseEntity<?> save(LanguageRequest request) {
-        GetUser user = new GetUser() ;
-        Usuario usuario = usuarioRepository.findByNombreUsuario(user.getUsuario()).orElseThrow();
-        System.out.println("estaaaaaaaa!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+ usuario.getIdUsuario());
-        System.out.println("numero de usuario" + usuario.getIdUsuario());
-
-        Language language = mapper.dtoToLanguage(request,usuario);
-        repository.save(language);
-        return new ResponseEntity( mapper.entityToDto(language) ,HttpStatus.ACCEPTED);
+      try {
+          GetUser user = new GetUser() ;
+          Usuario usuario = usuarioRepository.findByNombreUsuario(user.getUsuario()).orElseThrow();
+          Language language = mapper.dtoToLanguage(request,usuario);
+          repository.save(language);
+          mapper.entityToDto(language);
+          return new ResponseEntity(new Message("language create"),HttpStatus.ACCEPTED);
+      }
+      catch (Exception e )
+      {
+          return new ResponseEntity(new Message("bad request"),HttpStatus.BAD_REQUEST);
+      }
 
     }
 
     @Override
     public LanguageResponse update(LanguageRequest request) {
         Optional<Language> lan = repository.findById(request.getId());
-        Language languageNuevo =  mapper.UpdateLanguage(lan.get(),request);
+        Language languageNuevo =  mapper.UpdateLanguage(lan.get().getId(), request);
         repository.save(languageNuevo);
         return mapper.entityToDto(languageNuevo);
     }

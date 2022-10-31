@@ -25,6 +25,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/skills")
 public class SkillController {
 
