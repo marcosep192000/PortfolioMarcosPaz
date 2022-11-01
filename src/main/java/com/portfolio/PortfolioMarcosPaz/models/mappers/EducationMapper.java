@@ -6,21 +6,20 @@ import com.portfolio.PortfolioMarcosPaz.models.request.EducationRequest;
 import com.portfolio.PortfolioMarcosPaz.models.request.ExperienceRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.EducationResponse;
 import com.portfolio.PortfolioMarcosPaz.models.response.ExperienceResponse;
-import com.portfolio.PortfolioMarcosPaz.security.entity.Usuario;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 @Component
 public class EducationMapper {
 
-    public Education dtoToEntity(EducationRequest request , Usuario usuario){
+    public Education dtoToEntity(EducationRequest request){
         Education education = new Education();
         education.setTitleExperience(request.getTitleExperience());
         education.setNameBussines(request.getNameBussines());
         education.setDateEnd(request.getDateEnd());
         education.setDateStart(request.getDateStart());
         education.setUbicacion(request.getUbicacion());
-        education.setUsuario(usuario);
+
         return education;
     }
     public EducationResponse entityToDto(Education education){

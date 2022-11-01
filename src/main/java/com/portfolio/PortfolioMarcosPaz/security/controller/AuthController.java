@@ -1,5 +1,9 @@
 package com.portfolio.PortfolioMarcosPaz.security.controller;
+import com.portfolio.PortfolioMarcosPaz.models.entity.Language;
 import com.portfolio.PortfolioMarcosPaz.models.mappers.LanguageMapper;
+import com.portfolio.PortfolioMarcosPaz.models.request.LanguageRequest;
+import com.portfolio.PortfolioMarcosPaz.models.response.LanguageResponse;
+import com.portfolio.PortfolioMarcosPaz.repository.LanguageRepository;
 import com.portfolio.PortfolioMarcosPaz.security.dto.JwtDto;
 import com.portfolio.PortfolioMarcosPaz.security.dto.LoginUsuario;
 import com.portfolio.PortfolioMarcosPaz.security.dto.NuevoUsuario;
@@ -12,9 +16,11 @@ import com.portfolio.PortfolioMarcosPaz.security.service.RolService;
 import com.portfolio.PortfolioMarcosPaz.security.service.UsuarioService;
 import com.portfolio.PortfolioMarcosPaz.service.impl.LanguageImpl;
 import com.portfolio.PortfolioMarcosPaz.util.exeptions.GetUser;
+import com.portfolio.PortfolioMarcosPaz.util.exeptions.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,13 +29,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+<<<<<<< HEAD
 
 @CrossOrigin(origins = "http://localhost:4200")
+=======
+import java.util.stream.Collectors;
+>>>>>>> parent of 360b25d (reparado login)
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -49,38 +58,23 @@ public class AuthController {
     LanguageImpl languageService;
     @Autowired
     JwtProvider jwtProvider;
-
     @PostMapping("/add")
-    public ResponseEntity<?> nuevoUsuario(@Valid  @RequestBody NuevoUsuario nuevoUsuario){
+    public ResponseEntity<?> nuevoUsuario(@RequestBody NuevoUsuario nuevoUsuario,
+                                          BindingResult bindingResult){
         if(usuarioService.existsByUsuario(nuevoUsuario.getNombreUsuario())){
-            return new ResponseEntity<>("Ese nombre ya existe", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new Message("This name exist"), HttpStatus.BAD_REQUEST);
         }
         if(usuarioService.existsByEmail(nuevoUsuario.getEmail())){
-            return new ResponseEntity<>("Ese email ya existe", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new Message("This mail exist"), HttpStatus.BAD_REQUEST);
         }
-
-  System.out.print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"+  nuevoUsuario.getNombreUsuario()
-  +  " ---- " + nuevoUsuario.getRoles() + ".... " +nuevoUsuario.getEmail()+ ",,,,,"+ nuevoUsuario.getPassword()+"+++++++++" );
-
-      Usuario usuario= new Usuario();
-        usuario.setNombreUsuario(nuevoUsuario.getNombreUsuario());
-        usuario.setEmail(nuevoUsuario.getEmail());
-        usuario.setPassword(passwordEncoder.encode(nuevoUsuario.getPassword()));
-        usuario.setAboutMe(nuevoUsuario.getAboutMe());
-        usuario.setProvince(nuevoUsuario.getProvince());
-        usuario.setState(nuevoUsuario.getState());
-        usuario.setName(nuevoUsuario.getName());
-        usuario.setLastName(nuevoUsuario.getLastName());
-        usuario.setStack(nuevoUsuario.getStack());
-        usuario.setPerfilPhotograpy(nuevoUsuario.getPerfilPhotograpy());
-
+        Usuario usuario = new Usuario(nuevoUsuario.getNombreUsuario(),
+                nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()));
         Set<Rol> roles = new HashSet<>();
+        roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
         if(nuevoUsuario.getRoles().contains("admin"))
             roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
-
         usuario.setRoles(roles);
         usuarioService.save(usuario);
-        System.out.println(usuario);
 
         return new ResponseEntity<>("Usuario creado", HttpStatus.CREATED);
     }

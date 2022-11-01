@@ -71,9 +71,13 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/auth/**").permitAll()
+<<<<<<< HEAD
                 .antMatchers("/auth/login").permitAll()
                 .antMatchers("/auth/all").permitAll()
                 .antMatchers(HttpMethod.GET,"/education/all").permitAll()
+=======
+                .antMatchers("/education/**").permitAll()
+>>>>>>> parent of 360b25d (reparado login)
                 .antMatchers("/language/**").permitAll()
                 .antMatchers("/experience/all").permitAll()
                 .antMatchers(HttpMethod.POST,"/experience/create").permitAll()
