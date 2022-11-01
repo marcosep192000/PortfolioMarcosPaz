@@ -28,20 +28,20 @@ public class Usuario {
     private String email;
     @NotBlank
     private String password;
-    @NotNull
+
     private String name ;
-    @NotNull
+
     private String lastName;
-    @NotNull
+
     private String perfilPhotograpy;
 
-    @NotNull
+
     private String state;
-    @NotNull
+
     private String province;
-   @NotNull
+
     private String stack;
-    @NotNull
+
 
     private String aboutMe;
 
@@ -93,6 +93,8 @@ private List<Education> educationList;
     public Usuario(String nombreUsuario, String email, String encode) {
 
     }
+
+
 
     public Long getIdUsuario() {
         return idUsuario;
