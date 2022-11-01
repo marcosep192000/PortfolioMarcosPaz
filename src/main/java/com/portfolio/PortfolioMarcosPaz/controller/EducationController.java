@@ -19,7 +19,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
+@CrossOrigin(origins ="https://portfolio-2fdd4.web.app")
 @RequestMapping("/education")
 public class EducationController {
 @Autowired
