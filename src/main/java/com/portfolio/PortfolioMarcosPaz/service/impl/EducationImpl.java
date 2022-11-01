@@ -10,7 +10,6 @@ import com.portfolio.PortfolioMarcosPaz.security.repository.UsuarioRepository;
 import com.portfolio.PortfolioMarcosPaz.service.interfaces.IEducation;
 import com.portfolio.PortfolioMarcosPaz.util.exeptions.GetUser;
 import com.portfolio.PortfolioMarcosPaz.util.exeptions.Message;
-import com.sun.jdi.event.ExceptionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
