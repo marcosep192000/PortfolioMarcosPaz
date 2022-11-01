@@ -35,7 +35,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://localhost:4200 , https://portfolio-2fdd4.web.app/#/")
+@CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
 @RestController
 @RequestMapping("/auth")
 public class AuthController {

@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/experience")
-@CrossOrigin(origins = {"http://localhost:4200","https://portfolio-2fdd4.web.app/#/"})
+@CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
 public class ExperienceController {
     @Autowired
     ExperienceIpl experienceService;
