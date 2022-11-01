@@ -101,7 +101,7 @@ public class AuthController {
 
     @GetMapping("/portfolio")
     public Usuario createPostGivenUser(Authentication authentication) {
-         Usuario user=usuarioService.getByUsuario(authentication.getName()).orElseThrow();
+         Usuario user=usuarioService.getByUsuario(authentication.getName());
             return user;
         }
 }

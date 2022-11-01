@@ -33,7 +33,7 @@ public class EducationImpl implements IEducation {
     public ResponseEntity<?> createEducation(EducationRequest request) {
    try {
        GetUser user = new GetUser();
-       Usuario usuario = usuarioRepository.findByNombreUsuario(user.getUsuario()).orElseThrow();
+       Usuario usuario = usuarioRepository.findByNombreUsuario(user.getUsuario());
 
        Education response = mapper.dtoToEntity(request, usuario);
        educationRepository.save(response);
@@ -47,8 +47,8 @@ public class EducationImpl implements IEducation {
 
     @Override
     public EducationResponse uptdateEducation(Long id,EducationRequest request) {
-        Education education = educationRepository.findById(id).orElseThrow();
-        Education upadateEducation = mapper.update(request,education);
+        Optional<Education> education = educationRepository.findById(id);
+        Education upadateEducation = mapper.update(request, education.get());
         educationRepository.save(upadateEducation);
         return mapper.entityToDto(upadateEducation);
     }

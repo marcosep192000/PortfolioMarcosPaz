@@ -28,7 +28,7 @@ public class ProjectImp implements IProject {
     public ProjectResponse save(ProjectRequest request) {
 
         GetUser user = new GetUser();
-        Usuario usuario = usuarioRepository.findByNombreUsuario(user.getUsuario()).orElseThrow();
+        Usuario usuario = usuarioRepository.findByNombreUsuario(user.getUsuario());
         Project project = mapper.dtoToEntity(request,usuario);
         projectRepository.save(project);
         return  mapper.entityToDto(project);

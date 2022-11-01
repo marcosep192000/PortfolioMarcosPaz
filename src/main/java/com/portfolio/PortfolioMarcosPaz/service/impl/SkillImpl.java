@@ -35,7 +35,7 @@ public class SkillImpl  implements ISkill {
     public ResponseEntity<?> create(SkillRequest request) {
         try {
         GetUser user = new GetUser() ;
-        Usuario usuario = usuarioService.getByUsuario(user.getUsuario()).orElseThrow();
+        Usuario usuario = usuarioService.getByUsuario(user.getUsuario());
         Skill response = mapper.dtoToEntity(request,usuario);
         repository.save(response);
         return new ResponseEntity<>(new Message("Create NEW Skill"),HttpStatus.CREATED);}
@@ -45,7 +45,7 @@ public class SkillImpl  implements ISkill {
 
     @Override
     public SkillResponse update(Long id, SkillRequest request) {
-        Skill skill = repository.findById(id).orElseThrow();
+        Skill skill = repository.findById(id)  .orElseThrow(() -> new IllegalStateException("No worker nodes"));;
         Skill response =   mapper.update(skill,request);
         repository.save(response);
         return mapper.entityToDto(response);
@@ -59,9 +59,10 @@ public class SkillImpl  implements ISkill {
     @Override
     public ResponseEntity<?> delete(Long id) {
         Optional<Skill> skill = repository.findById(id);
-        if (skill.isEmpty()) {
-            return new ResponseEntity<>(new Message("Skill Not exist"), HttpStatus.ACCEPTED);}
+        if (skill.isPresent()) {
         repository.deleteById(skill.get().getId());
-        return new ResponseEntity<>(new Message("Skill deleted"), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(new Message("Skill deleted"), HttpStatus.ACCEPTED);
+        }
+        return new ResponseEntity<>(new Message("Skill Not exist"), HttpStatus.ACCEPTED);
     }
 }

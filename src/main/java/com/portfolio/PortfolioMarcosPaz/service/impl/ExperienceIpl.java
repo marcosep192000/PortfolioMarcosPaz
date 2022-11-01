@@ -27,7 +27,7 @@ ExperienceRepository experienceService;
     @Override
     public ExperienceResponse saveExperience(ExperienceRequest request) {
         GetUser user = new GetUser();
-        Usuario usuario = usuarioRepository.findByNombreUsuario(user.getUsuario()).orElseThrow();
+        Usuario usuario = usuarioRepository.findByNombreUsuario(user.getUsuario());
         Experience experience = mapper.dtoToExperiencia(request,usuario);
         experienceService.save(experience);
         return mapper.experienceToDto(experience);

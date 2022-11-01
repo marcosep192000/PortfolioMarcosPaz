@@ -1,14 +1,12 @@
 package com.portfolio.PortfolioMarcosPaz.models.mappers;
 
 import com.portfolio.PortfolioMarcosPaz.models.entity.Education;
-import com.portfolio.PortfolioMarcosPaz.models.entity.Experience;
 import com.portfolio.PortfolioMarcosPaz.models.request.EducationRequest;
-import com.portfolio.PortfolioMarcosPaz.models.request.ExperienceRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.EducationResponse;
-import com.portfolio.PortfolioMarcosPaz.models.response.ExperienceResponse;
 import com.portfolio.PortfolioMarcosPaz.security.entity.Usuario;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
+
+import java.util.Optional;
 
 @Component
 public class EducationMapper {

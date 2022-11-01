@@ -2,7 +2,6 @@ package com.portfolio.PortfolioMarcosPaz.security.service;
 
 import com.portfolio.PortfolioMarcosPaz.security.entity.Usuario;
 import com.portfolio.PortfolioMarcosPaz.security.repository.UsuarioRepository;
-import com.portfolio.PortfolioMarcosPaz.util.exeptions.GetUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +15,12 @@ public class UsuarioService {
     @Autowired
     UsuarioRepository usuarioRepository;
 
-    public Optional<Usuario> getByUsuario(String nombreUsuario) {
+    public Usuario getByUsuario(String nombreUsuario) {
         return usuarioRepository.findByNombreUsuario(nombreUsuario);
     }
 
-    public Usuario findByID(Long id) {
-        return usuarioRepository.findById(id).orElseThrow();
+    public Optional<Usuario> findByID(Long id) {
+        return usuarioRepository.findById(id);
     }
 
     public Boolean existsByUsuario(String nombreUsuario) {
@@ -40,7 +39,7 @@ public class UsuarioService {
 
     //Recupera el user de la session .
     public Usuario userSess(Long id ){
-       Usuario usuario = usuarioRepository.findById(id).orElseThrow();
+        Usuario usuario = usuarioRepository.findById(id)  .orElseThrow(() -> new IllegalStateException("No worker nodes"));;
 
 
 

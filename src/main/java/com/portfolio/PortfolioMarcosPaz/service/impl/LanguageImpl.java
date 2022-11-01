@@ -31,7 +31,7 @@ public class LanguageImpl implements ILanguage {
     public ResponseEntity<?> save(LanguageRequest request) {
       try {
           GetUser user = new GetUser() ;
-          Usuario usuario = usuarioRepository.findByNombreUsuario(user.getUsuario()).orElseThrow();
+          Usuario usuario = usuarioRepository.findByNombreUsuario(user.getUsuario());
           Language language = mapper.dtoToLanguage(request,usuario);
           repository.save(language);
           mapper.entityToDto(language);
