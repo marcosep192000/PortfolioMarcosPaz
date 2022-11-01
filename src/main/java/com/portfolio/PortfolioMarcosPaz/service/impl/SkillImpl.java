@@ -45,7 +45,7 @@ public class SkillImpl  implements ISkill {
 
     @Override
     public SkillResponse update(Long id, SkillRequest request) {
-        Skill skill = repository.findById(id)  .orElseThrow(() -> new IllegalStateException("No worker nodes"));;
+        Skill skill = repository.findById(id)  .orElseThrow(() -> new IllegalStateException("No worker nodes"));
         Skill response =   mapper.update(skill,request);
         repository.save(response);
         return mapper.entityToDto(response);

@@ -35,10 +35,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://localhost:4200")
-
-
-
+@CrossOrigin(origins = "http://localhost:4200 , https://portfolio-2fdd4.web.app/#/")
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -70,9 +67,9 @@ public class AuthController {
         Usuario usuario = new Usuario(nuevoUsuario.getNombreUsuario(),
                 nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()));
         Set<Rol> roles = new HashSet<>();
-        roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
+        roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).orElseThrow(() -> new IllegalStateException("No worker nodes")));
         if(nuevoUsuario.getRoles().contains("admin"))
-            roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
+            roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).orElseThrow(() -> new IllegalStateException("No worker nodes")));
         usuario.setRoles(roles);
         usuarioService.save(usuario);
 
