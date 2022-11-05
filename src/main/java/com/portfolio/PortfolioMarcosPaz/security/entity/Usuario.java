@@ -19,14 +19,15 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
-    @NotBlank
+
     @Column(unique = true)
     private String nombreUsuario;
     @NotBlank
     @Email
     @Column(unique = true)
     private String email;
-    @NotBlank
+
+
     private String password;
 
     private String name ;
