@@ -96,6 +96,13 @@ public class AuthController {
         return usuarioRepository.findAll();
     }
 
+    @GetMapping("/find/{id}")
+    public ResponseEntity<Usuario> findId(@PathVariable Long id , Usuario usuario)
+    {
+        return new ResponseEntity(usuarioRepository.findById(id),HttpStatus.ACCEPTED );
+    }
+
+
     @GetMapping("/portfolio")
     public Usuario createPostGivenUser(Authentication authentication) {
          Usuario user=usuarioService.getByUsuario(authentication.getName());

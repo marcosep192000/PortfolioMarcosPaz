@@ -40,9 +40,6 @@ public class UsuarioService {
     //Recupera el user de la session .
     public Usuario userSess(Long id ){
         Usuario usuario = usuarioRepository.findById(id)  .orElseThrow(() -> new IllegalStateException("No worker nodes"));;
-
-
-
         return usuario;
 
 }
