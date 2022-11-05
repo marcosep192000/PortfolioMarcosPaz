@@ -9,26 +9,26 @@ import java.util.Set;
 public class NuevoUsuario {
 
 
-    @NotBlank
+
     private String nombreUsuario;
     @Email
     private String email;
-    @NotBlank
+
     private String password;
 
-    @NotNull
+
     private String name ;
-    @NotNull
+
     private String lastName;
-    @NotNull
+
     private String perfilPhotograpy;
-    @NotNull
+
     private String state;
-    @NotNull
+
     private String province;
-    @NotNull
+
     private String stack;
-    @NotNull
+
     private String aboutMe;
 
     //Por defecto crea un usuario normal

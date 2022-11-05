@@ -22,7 +22,7 @@ public class Usuario {
 
     @Column(unique = true)
     private String nombreUsuario;
-    @NotBlank
+
     @Email
     @Column(unique = true)
     private String email;

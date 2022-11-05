@@ -108,6 +108,17 @@ public class AuthController {
          Usuario user=usuarioService.getByUsuario(authentication.getName());
             return user;
         }
+
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
+    @PutMapping("/update/{id}")
+       public ResponseEntity<Usuario> update(@PathVariable Long id, @RequestBody  Usuario usuario)
+    {
+
+         usuarioService.update(id , usuario);
+
+        return new ResponseEntity("MODIFICADO",HttpStatus.ACCEPTED);
+
+    }
 }
 
 

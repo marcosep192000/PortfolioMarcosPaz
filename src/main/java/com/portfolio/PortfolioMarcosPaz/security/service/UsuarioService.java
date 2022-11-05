@@ -41,6 +41,24 @@ public class UsuarioService {
     public Usuario userSess(Long id ){
         Usuario usuario = usuarioRepository.findById(id)  .orElseThrow(() -> new IllegalStateException("No worker nodes"));;
         return usuario;
-
 }
+
+    public Usuario update(Long id,Usuario usuario) {
+
+        Usuario usuario1 = usuarioRepository.findById(id) .orElseThrow(() -> new IllegalStateException("No worker nodes"));
+        System.out.print(usuario1);
+
+
+        usuario1.setEmail(usuario.getEmail());
+        usuario1.setAboutMe(usuario.getAboutMe());
+        usuario1.setProvince(usuario.getProvince());
+        usuario1.setState(usuario.getState());
+        usuario1.setLastName(usuario.getLastName());
+        usuario1.setPerfilPhotograpy(usuario.getPerfilPhotograpy());
+        usuario1.setName(usuario.getName());
+        usuario1.setStack(usuario.getStack());
+        usuarioRepository.save(usuario1);
+
+        return  usuario1 ;
+    }
 }

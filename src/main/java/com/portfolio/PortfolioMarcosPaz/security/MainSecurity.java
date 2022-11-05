@@ -4,6 +4,7 @@ package com.portfolio.PortfolioMarcosPaz.security;
 import com.portfolio.PortfolioMarcosPaz.security.jwt.JwtEntryPoint;
 import com.portfolio.PortfolioMarcosPaz.security.jwt.JwtTokenFilter;
 import com.portfolio.PortfolioMarcosPaz.security.service.UserDetailsServiceImpl;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +19,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
+@AllArgsConstructor
 @Configuration
 @EnableWebSecurity
 //con perPostEnabled se usa para indicar a q metodos puede acceder solo el admin
