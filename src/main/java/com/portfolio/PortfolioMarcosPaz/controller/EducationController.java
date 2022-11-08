@@ -52,6 +52,5 @@ public class EducationController {
           Message e =  education.deleteEducation(id);
         return new ResponseEntity(e ,HttpStatus.ACCEPTED);
     }
-
 }
 

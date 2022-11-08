@@ -1,7 +1,10 @@
 package com.portfolio.PortfolioMarcosPaz.controller;
 
+import com.portfolio.PortfolioMarcosPaz.models.entity.Project;
 import com.portfolio.PortfolioMarcosPaz.models.request.ProjectRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.ProjectResponse;
+import com.portfolio.PortfolioMarcosPaz.repository.ProjectRepository;
+import com.portfolio.PortfolioMarcosPaz.security.entity.Usuario;
 import com.portfolio.PortfolioMarcosPaz.service.impl.ProjectImp;
 import com.portfolio.PortfolioMarcosPaz.util.exeptions.Message;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +23,8 @@ public class ProjectController {
 
     @Autowired
     ProjectImp projectService;
-
+    @Autowired
+    ProjectRepository repository ;
     @PostMapping("/create")
     public ResponseEntity<ProjectResponse> save(@Valid @RequestBody ProjectRequest request)
     {
@@ -38,5 +42,10 @@ public class ProjectController {
         projectService.updateProject(id,request);
         return new ResponseEntity(new Message("update! "),HttpStatus.ACCEPTED);
     }
+    @GetMapping("/find/{id}")
+    public ResponseEntity<Project> find( @PathVariable Long id,@RequestBody Project project ){
+        Project project1 = repository.findById(id) .orElseThrow(() -> new IllegalStateException("No worker nodes"));
+        return  new ResponseEntity<>(project1,HttpStatus.ACCEPTED);
 
+    }
 }
