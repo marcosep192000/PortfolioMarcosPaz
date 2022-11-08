@@ -43,7 +43,7 @@ public class ProjectController {
         return new ResponseEntity(new Message("update! "),HttpStatus.ACCEPTED);
     }
     @GetMapping("/find/{id}")
-    public ResponseEntity<Project> find( @PathVariable Long id,@RequestBody Project project ){
+    public ResponseEntity<Project> find( @PathVariable Long id ){
         Project project1 = repository.findById(id) .orElseThrow(() -> new IllegalStateException("No worker nodes"));
         return  new ResponseEntity<>(project1,HttpStatus.ACCEPTED);
 
