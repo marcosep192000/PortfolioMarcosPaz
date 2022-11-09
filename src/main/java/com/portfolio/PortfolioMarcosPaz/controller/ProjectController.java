@@ -45,7 +45,11 @@ public class ProjectController {
     @GetMapping("/find/{id}")
     public ResponseEntity<Project> find( @PathVariable Long id ){
         Project project1 = repository.findById(id) .orElseThrow(() -> new IllegalStateException("No worker nodes"));
-        return  new ResponseEntity<>(project1,HttpStatus.ACCEPTED);
+        return  new ResponseEntity(project1,HttpStatus.ACCEPTED);
 
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        return new ResponseEntity("",HttpStatus.ACCEPTED) ;
     }
 }

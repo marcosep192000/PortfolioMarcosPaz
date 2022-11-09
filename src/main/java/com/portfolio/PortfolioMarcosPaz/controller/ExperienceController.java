@@ -1,8 +1,10 @@
 package com.portfolio.PortfolioMarcosPaz.controller;
 
 import com.portfolio.PortfolioMarcosPaz.models.entity.Experience;
+import com.portfolio.PortfolioMarcosPaz.models.entity.Project;
 import com.portfolio.PortfolioMarcosPaz.models.request.ExperienceRequest;
 import com.portfolio.PortfolioMarcosPaz.models.response.ExperienceResponse;
+import com.portfolio.PortfolioMarcosPaz.repository.ExperienceRepository;
 import com.portfolio.PortfolioMarcosPaz.service.impl.ExperienceIpl;
 import com.portfolio.PortfolioMarcosPaz.util.exeptions.Message;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,8 @@ import java.util.List;
 public class ExperienceController {
     @Autowired
     ExperienceIpl experienceService;
-
+@Autowired
+    ExperienceRepository experienceRepository;
 
     @PostMapping("/create")
     public ResponseEntity<ExperienceResponse> create(@Valid @RequestBody ExperienceRequest request){
@@ -45,6 +48,10 @@ public class ExperienceController {
         List<Experience> list =  experienceService.allExperiences();
         return new ResponseEntity(list, HttpStatus.ACCEPTED);
     }
-
+    @GetMapping("/find/{id}")
+    public ResponseEntity<Experience> find(@PathVariable Long id ){
+      Experience ex = experienceRepository.findById(id) .orElseThrow(() -> new IllegalStateException("No worker nodes"));
+        return  new ResponseEntity(ex,HttpStatus.ACCEPTED);
+    }
 }
 
