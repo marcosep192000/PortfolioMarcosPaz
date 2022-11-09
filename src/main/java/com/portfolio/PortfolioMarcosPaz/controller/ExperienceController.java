@@ -38,9 +38,9 @@ public class ExperienceController {
         experienceService.updateExperience(id,request);
         return new ResponseEntity(new Message("Experience update!"), HttpStatus.ACCEPTED);
     }
-    @PutMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<ExperienceResponse> delete (@PathVariable Long id) {
-         experienceService.deletExperience(id);
+        experienceRepository.deleteById(id);
         return new ResponseEntity(new Message("Experience Deleted !"), HttpStatus.ACCEPTED);
     }
     @GetMapping("/all")
