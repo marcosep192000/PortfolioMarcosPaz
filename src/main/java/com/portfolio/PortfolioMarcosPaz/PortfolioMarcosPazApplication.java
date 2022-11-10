@@ -22,7 +22,7 @@ public class PortfolioMarcosPazApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("http://localhost:4200").allowedMethods("*").allowedHeaders("*");
+				registry.addMapping("/**").allowedOrigins("https://marcosep192000.herokuapp.com").allowedMethods("*").allowedHeaders("*");
 			}
 		};
 	}
