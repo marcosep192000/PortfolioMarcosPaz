@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class Cors {
 
 
-}/*  @Bean
+ @Bean
     public WebMvcConfigurer CORSConfigurer(){
         return new WebMvcConfigurer() {
             @Override
@@ -20,4 +20,4 @@ public class Cors {
             }
         };
     }
-        */
+}

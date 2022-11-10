@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
+@CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -54,6 +54,7 @@ public class AuthController {
     LanguageImpl languageService;
     @Autowired
     JwtProvider jwtProvider;
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @PostMapping("/add")
     public ResponseEntity<?> nuevoUsuario(@RequestBody NuevoUsuario nuevoUsuario,
                                           BindingResult bindingResult){
@@ -74,6 +75,7 @@ public class AuthController {
 
         return new ResponseEntity<>("Usuario creado", HttpStatus.CREATED);
     }
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
         if (bindingResult.hasErrors())
@@ -87,21 +89,21 @@ public class AuthController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
         return new ResponseEntity<>(jwtDto, HttpStatus.OK);
-    }
+    }@CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @GetMapping("/all")
     public List<Usuario> listar(){
 
 
         return usuarioRepository.findAll();
     }
-
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @GetMapping("/find/{id}")
     public ResponseEntity<Usuario> findId(@PathVariable Long id , Usuario usuario)
     {
         return new ResponseEntity(usuarioRepository.findById(id),HttpStatus.ACCEPTED );
     }
 
-
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @GetMapping("/portfolio")
     public Usuario createPostGivenUser(Authentication authentication) {
          Usuario user=usuarioService.getByUsuario(authentication.getName());

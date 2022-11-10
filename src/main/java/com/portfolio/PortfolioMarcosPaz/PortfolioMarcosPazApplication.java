@@ -17,14 +17,5 @@ public class PortfolioMarcosPazApplication {
 
 
 
-@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("https://marcosep192000.herokuapp.com").allowedMethods("*").allowedHeaders("*");
-			}
-		};
-	}
 
 }
