@@ -40,7 +40,7 @@ public class ExperienceController {
         return new ResponseEntity(new Message("Experience update!"), HttpStatus.ACCEPTED);
     }
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<ExperienceResponse> delete (@PathVariable Long id) {
+    public ResponseEntity<ExperienceResponse> delete (@PathVariable Long id ) {
         experienceRepository.deleteById(id);
         return new ResponseEntity(new Message("Experience Deleted !"), HttpStatus.ACCEPTED);
     }
