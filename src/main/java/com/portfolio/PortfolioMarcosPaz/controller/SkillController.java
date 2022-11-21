@@ -52,27 +52,32 @@ public class SkillController {
     JwtProvider jwtProvider;
 @Autowired
     SkillRepository skillRepository;
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
      @PostMapping("/create")
     public ResponseEntity<?> create(@Valid @RequestBody SkillRequest request) {
 
          ResponseEntity<?> E = skillService.create(request);
          return new ResponseEntity(E.getBody(),E.getStatusCode()) ;
     }
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @GetMapping("/all")
     public ResponseEntity<List<SkillResponse>> all() {
             return new ResponseEntity(skillService.all(), HttpStatus.ACCEPTED);
     }
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@Valid @PathVariable Long id , @RequestBody SkillRequest request) {
             SkillResponse responseEntity = skillService.update(id,request);
             return new ResponseEntity(new Message("update"),HttpStatus.ACCEPTED);
     }
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         ResponseEntity entity = skillService.delete(id);
         return new ResponseEntity<>(entity.getBody(), HttpStatus.ACCEPTED);
     }
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @GetMapping("/find/{id}")
     public ResponseEntity<Skill> find(@PathVariable Long id ){
       Skill skill= skillRepository.findById(id) .orElseThrow(() -> new IllegalStateException("No worker nodes"));

@@ -25,6 +25,7 @@ public class ProjectController {
     ProjectImp projectService;
     @Autowired
     ProjectRepository repository ;
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @PostMapping("/create")
     public ResponseEntity<ProjectResponse> save(@Valid @RequestBody ProjectRequest request)
     {
@@ -32,22 +33,26 @@ public class ProjectController {
         return new ResponseEntity(new Message("Project Created"),HttpStatus.CREATED);
 
     }
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @GetMapping("/all")
     public ResponseEntity<List<ProjectResponse>>allProjets(){
         return new ResponseEntity(projectService.allProjects(),HttpStatus.ACCEPTED);
     }
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @PutMapping("/update/{id}")
     public ResponseEntity<ProjectRequest> updateProject ( @Valid @PathVariable Long id, @RequestBody  ProjectRequest request){
 
         projectService.updateProject(id,request);
         return new ResponseEntity(new Message("update! "),HttpStatus.ACCEPTED);
     }
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @GetMapping("/find/{id}")
     public ResponseEntity<Project> find( @PathVariable Long id ){
         Project project1 = repository.findById(id) .orElseThrow(() -> new IllegalStateException("No worker nodes"));
         return  new ResponseEntity(project1,HttpStatus.ACCEPTED);
 
     }
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
         repository.deleteById(id);
