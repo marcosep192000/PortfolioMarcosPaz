@@ -1,9 +1,5 @@
 package com.portfolio.PortfolioMarcosPaz.security.controller;
-import com.portfolio.PortfolioMarcosPaz.models.entity.Language;
 import com.portfolio.PortfolioMarcosPaz.models.mappers.LanguageMapper;
-import com.portfolio.PortfolioMarcosPaz.models.request.LanguageRequest;
-import com.portfolio.PortfolioMarcosPaz.models.response.LanguageResponse;
-import com.portfolio.PortfolioMarcosPaz.repository.LanguageRepository;
 import com.portfolio.PortfolioMarcosPaz.security.dto.JwtDto;
 import com.portfolio.PortfolioMarcosPaz.security.dto.LoginUsuario;
 import com.portfolio.PortfolioMarcosPaz.security.dto.NuevoUsuario;
@@ -15,12 +11,11 @@ import com.portfolio.PortfolioMarcosPaz.security.repository.UsuarioRepository;
 import com.portfolio.PortfolioMarcosPaz.security.service.RolService;
 import com.portfolio.PortfolioMarcosPaz.security.service.UsuarioService;
 import com.portfolio.PortfolioMarcosPaz.service.impl.LanguageImpl;
-import com.portfolio.PortfolioMarcosPaz.util.exeptions.GetUser;
 import com.portfolio.PortfolioMarcosPaz.util.exeptions.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,9 +26,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
+
 import java.util.Set;
-import java.util.stream.Collectors;
+
 @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
 @RestController
 @RequestMapping("/auth")
@@ -88,7 +83,10 @@ public class AuthController {
         String jwt = jwtProvider.generateToken(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
+        System.out.print(userDetails.getUsername());
         return new ResponseEntity<>(jwtDto, HttpStatus.OK);
+
+
     }@CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @GetMapping("/all")
     public List<Usuario> listar(){

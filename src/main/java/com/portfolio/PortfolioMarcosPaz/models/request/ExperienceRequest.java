@@ -7,14 +7,14 @@ import java.io.Serializable;
 
 public class ExperienceRequest implements Serializable {
     private Long id;
-    @NotBlank(message = "Name is empty.")
+
     private  String Name;
     private  String logo;
-    @NotBlank(message = " Select Date for start")
+
     private  String startDate;
-    @NotBlank(message = "Select Date for finally.")
+
     private  String finallyDate;
-    @NotBlank(message = "Description  is empty.")
+
     private  String description;
     private Boolean state ;
 

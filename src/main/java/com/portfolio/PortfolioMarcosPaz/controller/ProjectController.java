@@ -50,6 +50,7 @@ public class ProjectController {
     }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
-        return new ResponseEntity("",HttpStatus.ACCEPTED) ;
+        repository.deleteById(id);
+        return new ResponseEntity(new Message("deleted"),HttpStatus.ACCEPTED) ;
     }
 }

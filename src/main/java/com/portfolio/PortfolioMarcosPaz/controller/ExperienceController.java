@@ -22,12 +22,12 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
 @RequestMapping("/experience")
-
 public class ExperienceController {
     @Autowired
     ExperienceIpl experienceService;
 @Autowired
     ExperienceRepository experienceRepository;
+
     @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @PostMapping("/create")
     public ResponseEntity<ExperienceResponse> create(@Valid @RequestBody ExperienceRequest request){
@@ -44,12 +44,15 @@ public class ExperienceController {
     public ResponseEntity<ExperienceResponse> delete (@PathVariable Long id ) {
         experienceRepository.deleteById(id);
         return new ResponseEntity(new Message("Experience Deleted !"), HttpStatus.ACCEPTED);
-    }@CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
+    }
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @GetMapping("/all")
     public ResponseEntity<ExperienceResponse> all() {
         List<Experience> list =  experienceService.allExperiences();
         return new ResponseEntity(list, HttpStatus.ACCEPTED);
-    }@CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
+    }
+
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @GetMapping("/find/{id}")
     public ResponseEntity<Experience> find(@PathVariable Long id ){
       Experience ex = experienceRepository.findById(id) .orElseThrow(() -> new IllegalStateException("No worker nodes"));
