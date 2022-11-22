@@ -22,7 +22,7 @@ public class Skill {
     @Min(value = 1, message = "min 1 ")
     @Max(value = 100, message = "max 100")
     private Integer pointSkill;
-    @NotBlank(message = "Name not blanck")
+
     private String imageSkillStack;
 
     @JsonIgnore

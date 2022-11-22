@@ -11,7 +11,7 @@ public class SkillRequest implements Serializable {
     @Min(value = 1, message = "min 1 ")
     @Max(value = 100, message = "max 100")
     private int pointSkill;
-    @NotBlank(message = "Name not blanck")
+
     private String imageSkillStack;
 
     public SkillRequest() {
