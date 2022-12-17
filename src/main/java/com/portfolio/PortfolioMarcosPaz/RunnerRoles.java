@@ -27,7 +27,7 @@ UsuarioService usuario;
 
     @Override
     public void run(String... args) throws Exception {
-       System.out.println("Insert MySQL");
+      /* System.out.println("Insert MySQL");
             Rol r = new Rol(ROLE_ADMIN);
             Rol S = new Rol(ROLE_ADMIN);
         rolService.save(r);
@@ -47,7 +47,7 @@ UsuarioService usuario;
 
 
         usuario.save(u);
-        System.out.println("Fin insercion Base de datos");
+        System.out.println("Fin insercion Base de datos");*/
 
     }
 
