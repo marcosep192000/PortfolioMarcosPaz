@@ -30,27 +30,32 @@ public class EducationController {
   EducationRepository educationRepository;
 @Autowired
     EducationImpl education;
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @PostMapping("/create")
     public ResponseEntity<?> create( @Valid @RequestBody EducationRequest request){
         ResponseEntity<?> responseEntity= education.createEducation(request);
        return new ResponseEntity(responseEntity.getBody(), responseEntity.getStatusCode());
     }
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @GetMapping("/all")
     public ResponseEntity<List<EducationResponse>> allEducation( ){
         List<Education> educations = education.allEducation();
      return new ResponseEntity (educations,HttpStatus.ACCEPTED);
     }
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @PutMapping("/update/{id}")
     public ResponseEntity update(@Valid @PathVariable Long id,@RequestBody EducationRequest request)
     {
         education.uptdateEducation(id,request);
         return new ResponseEntity<>(new Message("Update"),HttpStatus.ACCEPTED);
     }
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
           Message e =  education.deleteEducation(id);
         return new ResponseEntity(new Message("eliminado") ,HttpStatus.ACCEPTED);
     }
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @GetMapping("/find/{id}")
     public ResponseEntity<Education> find(@PathVariable Long id ){
      Education ed = educationRepository.findById(id).orElseThrow(() -> new IllegalStateException("No worker nodes"));

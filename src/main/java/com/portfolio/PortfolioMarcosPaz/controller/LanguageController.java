@@ -24,18 +24,20 @@ public class LanguageController {
 UsuarioRepository usuarioRepo;
 
 
-
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
 @PostMapping("/create")
     public ResponseEntity<?>save(@Valid @RequestBody LanguageRequest request) {
    ResponseEntity<?> responseEntity= languageService.save(request);
     return new ResponseEntity(responseEntity.getBody(),responseEntity.getStatusCode()) ;
 }
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
 @PutMapping("/update/{id}")
     public ResponseEntity<LanguageResponse> update(@Valid @RequestBody LanguageRequest request,@PathVariable Long id) {
 
     LanguageResponse l= languageService.update(request);
     return new ResponseEntity("Language update",HttpStatus.ACCEPTED);
 }
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
 
     @GetMapping("/all-languages")
     public ResponseEntity<List<LanguageResponse>> allLanguages()
@@ -43,6 +45,7 @@ UsuarioRepository usuarioRepo;
       List<Language> l=  languageService.allLanguages();
         return new ResponseEntity(l,HttpStatus.ACCEPTED) ;
     }
+    @CrossOrigin(origins = {"http://localhost:4200" , "https://portfolio-2fdd4.web.app"})
     @DeleteMapping("/delete-language")
     public ResponseEntity<?> DeleteLanguage(@Valid Long id ){
         languageService.deletLanguage(id);
